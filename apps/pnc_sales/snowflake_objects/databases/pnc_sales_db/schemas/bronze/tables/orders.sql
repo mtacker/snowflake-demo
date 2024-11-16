@@ -5,9 +5,8 @@
 -----------------------------------------------------------------------
 -- Source Table:
 -- SNOWFLAKE_SAMPLE_DATA.TPCH_SF10.ORDERS contains 15,000,000 records
-USE SCHEMA pnc_sales_db.bronze;
-DROP TABLE IF EXISTS orders;
-CREATE OR ALTER TABLE orders (
+DROP TABLE IF EXISTS pnc_sales_db.bronze.orders;
+CREATE OR ALTER TABLE pnc_sales_db.bronze.orders (
 	O_ORDERKEY NUMBER(38,0),
 	O_CUSTKEY NUMBER(38,0),
 	O_ORDERSTATUS VARCHAR(1),
@@ -18,7 +17,7 @@ CREATE OR ALTER TABLE orders (
 	O_SHIPPRIORITY NUMBER(38,0),
 	O_COMMENT VARCHAR(79)
 );
-INSERT INTO orders (
+INSERT INTO pnc_sales_db.bronze.orders (
     O_ORDERKEY, 
     O_CUSTKEY, 
     O_ORDERSTATUS, 

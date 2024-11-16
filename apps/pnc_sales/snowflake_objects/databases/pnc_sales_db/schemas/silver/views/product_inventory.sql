@@ -1,5 +1,4 @@
-USE SCHEMA pnc_sales_db.silver;
-CREATE OR REPLACE VIEW product_inventory AS
+CREATE OR REPLACE VIEW pnc_sales_db.silver.product_inventory AS
 SELECT
     p.product_id,
     p.name AS product_name,

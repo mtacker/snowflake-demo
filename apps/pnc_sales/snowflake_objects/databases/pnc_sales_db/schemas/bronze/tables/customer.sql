@@ -6,10 +6,10 @@
 -- Source Table:
 -- SNOWFLAKE_SAMPLE_DATA.TPCH_SF10.CUSTOMER contains 1,500,000 records
 
-USE SCHEMA pnc_sales_db.bronze;
-DROP TABLE IF EXISTS customer;
 
-CREATE OR ALTER TABLE customer (
+DROP TABLE IF EXISTS pnc_sales_db.bronze.customer;
+
+CREATE OR ALTER TABLE pnc_sales_db.bronze.customer (
 	C_CUSTKEY NUMBER(38,0),
 	C_NAME VARCHAR(25),
 	C_ADDRESS VARCHAR(40),
@@ -17,7 +17,7 @@ CREATE OR ALTER TABLE customer (
 	C_PHONE VARCHAR(15)
 );
 
-INSERT INTO CUSTOMER (
+INSERT INTO pnc_sales_db.bronze.CUSTOMER (
     C_CUSTKEY, 
     C_NAME, 
     C_ADDRESS, 

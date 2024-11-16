@@ -1,10 +1,10 @@
-CREATE OR REPLACE PROCEDURE LOAD_BRONZE_CUSTOMER_ORDERS()
+CREATE OR REPLACE PROCEDURE pnc_sales_db.bronze.LOAD_BRONZE_CUSTOMER_ORDERS()
 RETURNS STRING
 LANGUAGE JAVASCRIPT
 AS
 $$
 try {
-    var sql_command = `CREATE TABLE bronze_customer_orders AS
+    var sql_command = `CREATE TABLE pnc_sales_db.bronze.bronze_customer_orders AS
                        SELECT c.C_CUSTKEY,
                               c.C_NAME AS customer_name,
                               o.O_ORDERKEY,

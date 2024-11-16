@@ -1,6 +1,6 @@
-USE SCHEMA USE SCHEMA pnc_sales_db.silver;
+
 create 
-or replace view customer_orders as 
+or replace view pnc_sales_db.silver.customer_orders as 
 (
    select
       c_name,
