@@ -40,10 +40,6 @@
 
 
 
-
-
--- The rest of my proposed orchestration would look like this:
-
 -- TABLES
 USE SCHEMA ADM_CONTROL_DB.DEPLOY;
 ALTER GIT REPOSITORY SNOWFLAKE_GIT_REPO FETCH;
@@ -58,6 +54,14 @@ EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowfl
  
 -- VIEWS
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowflake_objects/databases/pnc_sales_db/schemas/bronze/views/customer_orders.sql;
+-- Uncaught exception of  │
+-- │ type 'STATEMENT_ERROR' in file                                               │
+-- │ @SNOWFLAKE_GIT_REPO/branches/master/apps/sf_deploy_prd.sql on line 56 at     │
+-- │ position 0:                                                                  │
+-- │ SQL compilation error:                                                       │
+-- │ Stage 'PNC_SALES_DB.BRONZE.SNOWFLAKE_GIT_REPO' does not exist or not         │
+-- │ authorized. 
+-- inserting FETCH command because of weird error that keeps popping up ^
 USE SCHEMA ADM_CONTROL_DB.DEPLOY;
 ALTER GIT REPOSITORY SNOWFLAKE_GIT_REPO FETCH;
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowflake_objects/databases/pnc_sales_db/schemas/silver/views/customer_orders.sql;

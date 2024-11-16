@@ -48,7 +48,6 @@ Thanks for the assist and any comments about any of this! Especially about my ov
 
 
 
-
 <!-- ```
 mkdir -p ./apps/pnc_sales/{snowflake_objects/databases/pnc_sales_db/schemas/alerts/{externalTables,fileFormats,maskingPolicies,pipes,stages,streams,tables,tasks,views,sequences,storedProcedures,udfs,streams,tasks},scripts};  
 ``` -->
