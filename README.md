@@ -17,7 +17,6 @@ A commit to Github [triggers main.yml](/.github/workflows/main.yml).  main.yml c
 
 
 
-
 ![alt text](.images/include_vars.png)
 
 ## Approach 2
