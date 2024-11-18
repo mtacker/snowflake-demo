@@ -48,8 +48,6 @@ And just now I had to add a "reminder" of the location of the git stage before t
 ![alt text](.images/PNC_SALES_DB.BRONZE.SNOWFLAKE_GIT_REPO.png)
 
 
-<!-- ## Database Notes
-![alt text](.images/db_image.png) -->
 
 ## Logging question
 
