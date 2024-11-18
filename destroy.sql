@@ -50,7 +50,7 @@ DROP ROLE IF EXISTS PNC_SALES_SILVER_RW_AR;
 DROP ROLE IF EXISTS PNC_SALES_SILVER_R_AR;
 DROP ROLE IF EXISTS PNC_SALES_SYSADMIN_FR;
 DROP DATABASE IF EXISTS DEV_DB;
-DROP DATABASE IF EXISTS MGT_CONTROL_DB;
+DROP DATABASE IF EXISTS MGT_platform_DB;
 DROP DATABASE IF EXISTS PRD_DB;
 DROP DATABASE IF EXISTS QA_DB;
 DROP DATABASE IF EXISTS adm_platform_DB;
@@ -71,7 +71,7 @@ DROP WAREHOUSE IF EXISTS PNC_SALES_DB_WH;
 --   -- Desc:
 --   --        This script is run manually to create the following objects:
 --   --
---   --        Admin Control database adm_platform_DB
+--   --        Admin platform database adm_platform_DB
 --   --        adm_platform_DB.DEPLOY schema is where the following objects will be created:
 --   --        GITHUB_SECRET, GITHUB_API_INTEGRATION & SNOWFLAKE_GIT_REPO
 --   -- 
@@ -96,7 +96,7 @@ DROP WAREHOUSE IF EXISTS PNC_SALES_DB_WH;
 --------------------------------------------------------------------------------------------
 
 SET beNm = 'ADM';        -- Business Entity / Segment
-SET dbNm = 'CONTROL';    -- Database Name
+SET dbNm = 'PLATFORM';    -- Database Name
 SET scNm = 'DEPLOY';     -- Schema Name
 
 -- construct the database name and delegated admin role

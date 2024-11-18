@@ -4,7 +4,7 @@
 --   -- Desc:
 --   --        This script is run manually to create the following objects:
 --   --
---   --        Admin Control database adm_platform_DB
+--   --        Admin platform database adm_platform_DB
 --   --        adm_platform_DB.DEPLOY schema is where the following objects will be created:
 --   --        GITHUB_SECRET, GITHUB_API_INTEGRATION & SNOWFLAKE_GIT_REPO
 --   --        This script also initializes roles and role hierarchies to support
