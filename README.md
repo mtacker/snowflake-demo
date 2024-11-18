@@ -32,6 +32,17 @@ A commit to Github [triggers main.yml](/.github/workflows/main.yml).  main.yml c
 
 ![alt text](.images/separate_vars.png)
 
+
+## Latest issue with EXECUTE IMMEDIATE FROM
+
+In this new (occassional) error, Snowflake seems to forget the schema location of our repository.
+'ADM_CONTROL_DB.DEPLOY.SNOWFLAKE_GIT_REPO' is the location of our local git stage.  But for some reason all of the sudden SF thinks it should be expected in 'PNC_SALES_DB.BRONZE.SNOWFLAKE_GIT_REPO'.  
+
+NOTE> Line 56 in the error is now line 67 in the failing script: [sf_deploy_prd.sql]](apps/sf_deploy_prd.sql).  It's now line 67 because I added the error text and another FETCH call to see if I can "remind" EXECUTE IMMEDIATE FROM of the correct stage location.  
+
+![alt text](.images/PNC_SALES_DB.BRONZE.SNOWFLAKE_GIT_REPO.png)
+
+
 <!-- ## Database Notes
 ![alt text](.images/db_image.png) -->
 

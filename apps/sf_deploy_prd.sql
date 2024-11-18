@@ -53,7 +53,7 @@ EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowfl
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowflake_objects/databases/pnc_sales_db/schemas/gold/tables/shipping.sql;
  
 -- VIEWS
-EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowflake_objects/databases/pnc_sales_db/schemas/bronze/views/customer_orders.sql;
+
 -- Uncaught exception of  │
 -- │ type 'STATEMENT_ERROR' in file                                               │
 -- │ @SNOWFLAKE_GIT_REPO/branches/master/apps/sf_deploy_prd.sql on line 56 at     │
@@ -64,6 +64,8 @@ EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowfl
 -- inserting FETCH command because of weird error that keeps popping up ^
 USE SCHEMA ADM_CONTROL_DB.DEPLOY;
 ALTER GIT REPOSITORY SNOWFLAKE_GIT_REPO FETCH;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowflake_objects/databases/pnc_sales_db/schemas/bronze/views/customer_orders.sql;
+
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowflake_objects/databases/pnc_sales_db/schemas/silver/views/customer_orders.sql;
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowflake_objects/databases/pnc_sales_db/schemas/silver/views/product_inventory.sql;
 
