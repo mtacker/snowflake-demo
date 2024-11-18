@@ -1,6 +1,6 @@
 -- Change as need to point to your Github UserName, URL, and Personal Access Token
 USE ROLE ACCOUNTADMIN;
-USE DATABASE ADM_CONTROL_DB;
+USE DATABASE adm_platform_DB;
 USE SCHEMA DEPLOY;
 CREATE OR REPLACE USER SVC_DEPLOY
 PASSWORD = 'YOUR SF PWD'

@@ -33,8 +33,8 @@ set dnaSysAdmin = 'DNA_SYSADMIN_FR';    -- DNA_SYSADMIN_FR is currently envision
 set cpgSysAdmin = 'CPG_SYSADMIN_FR';    -- DNA_SYSADMIN_FR is currently envisioned to have all LOCAL SYSADMIN roles
                                         -- roll up to it. Think of it as a DBA role. But STILL must have PDE_SYSADMIN_FR
                                         -- in order to drop and create databases.
-SET mgtSysAdmin = 'ADM_SYSADMIN_FR';     -- Admin role that can make changes to all schemas in ADM_CONTROL_DB.
-                                         -- (Yvonne, I'm going to change ADM_CONTROL_DB to ADM_PLATFORM_DB after your session yesterday). 
+SET admSysAdmin = 'ADM_SYSADMIN_FR';     -- Admin role that can make changes to all schemas in adm_platform_DB.
+                                         -- (Yvonne, I'm going to change adm_platform_DB to ADM_PLATFORM_DB after your session yesterday). 
 
 SET dnaEngC = 'DNA_ENGINEER_FR';        -- Highly priviledged DNA Engineer. Inherits ALL permissions from Read and Read/Write 
                                         -- but can also has access to a ton of other stuff in the schema. Full Engineers can resize Warehouses.
@@ -62,7 +62,7 @@ CREATE ROLE IF NOT EXISTS IDENTIFIER($dnaAnaR);     -- DNA_ANALYST_FR
 CREATE ROLE IF NOT EXISTS IDENTIFIER($cpgSysAdmin); -- CPG_SYSADMIN_FR
 CREATE ROLE IF NOT EXISTS IDENTIFIER($cpgEngC);     -- CPG_ENGINEER_FR
 CREATE ROLE IF NOT EXISTS IDENTIFIER($cpgAnaR);     -- CPG_ANALYST_FR
-CREATE ROLE IF NOT EXISTS IDENTIFIER($mgtSysAdmin);     -- ADM_SYSADMIN_FR
+CREATE ROLE IF NOT EXISTS IDENTIFIER($admSysAdmin);     -- ADM_SYSADMIN_FR
 
 ---------------------------------------------------------------
 -- 2. CREATE OUR FUNCTIONAL ROLE HIERARCHIES
@@ -78,7 +78,7 @@ GRANT ROLE IDENTIFIER($dnaAnaR) TO ROLE IDENTIFIER($dnaEngC);
 GRANT ROLE IDENTIFIER($cpgSysAdmin) TO ROLE IDENTIFIER($pltfrAdmin);
 GRANT ROLE IDENTIFIER($cpgEngC) TO ROLE IDENTIFIER($cpgSysAdmin);
 GRANT ROLE IDENTIFIER($cpgAnaR) TO ROLE IDENTIFIER($cpgEngC); 
-GRANT ROLE IDENTIFIER($mgtSysAdmin) TO ROLE IDENTIFIER($pltfrAdmin);
+GRANT ROLE IDENTIFIER($admSysAdmin) TO ROLE IDENTIFIER($pltfrAdmin);
  
 
 ---------------------------------------------------------------
@@ -88,12 +88,12 @@ GRANT ROLE BP_CUSTOMER_SYSADMIN_FR TO ROLE IDENTIFIER($dnaSysAdmin);
 GRANT ROLE HR_PEOPLE_SYSADMIN_FR TO ROLE IDENTIFIER($dnaSysAdmin);
 GRANT ROLE PNC_SALES_SYSADMIN_FR TO ROLE IDENTIFIER($dnaSysAdmin);
 GRANT ROLE CPG_ASSETAVAIL_SYSADMIN_FR TO ROLE IDENTIFIER($cpgSysAdmin);
--- CREATE ROLE HEIRARCHY FOR ADM_CONTROL_DB
-GRANT ROLE ADM_CONTROL_SYSADMIN_FR TO ROLE IDENTIFIER($mgtSysAdmin);
-GRANT ROLE BP_CUSTOMER_SYSADMIN_FR TO ROLE IDENTIFIER($mgtSysAdmin);
-GRANT ROLE HR_PEOPLE_SYSADMIN_FR TO ROLE IDENTIFIER($mgtSysAdmin);
-GRANT ROLE PNC_SALES_SYSADMIN_FR TO ROLE IDENTIFIER($mgtSysAdmin);
-GRANT ROLE CPG_ASSETAVAIL_SYSADMIN_FR TO ROLE IDENTIFIER($mgtSysAdmin);
+-- CREATE ROLE HEIRARCHY FOR adm_platform_DB
+GRANT ROLE adm_platform_SYSADMIN_FR TO ROLE IDENTIFIER($admSysAdmin);
+GRANT ROLE BP_CUSTOMER_SYSADMIN_FR TO ROLE IDENTIFIER($admSysAdmin);
+GRANT ROLE HR_PEOPLE_SYSADMIN_FR TO ROLE IDENTIFIER($admSysAdmin);
+GRANT ROLE PNC_SALES_SYSADMIN_FR TO ROLE IDENTIFIER($admSysAdmin);
+GRANT ROLE CPG_ASSETAVAIL_SYSADMIN_FR TO ROLE IDENTIFIER($admSysAdmin);
 
 ---------------------------------------------------------------
 -- 4. GRANT OUR VARIOUS LOCAL FULL ENGINEERIN ROLES TO HIGHER LEVEL FUNCTIONAL ROLES
