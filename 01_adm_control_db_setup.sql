@@ -39,6 +39,7 @@ SET databaseNm = $dbNm || '_DB';
 SET schemaNm = $databaseNm || '.' || $scNm;
 SET publicSchemaNm = $databaseNm || '.' || 'public';
 SET pltfrAdmin  = 'PDE_SYSADMIN_FR';  --- Platform sysadmin,  delegated role granted up to SYSADMIN. Create only once.
+SET localfrAdmin  =  $dbNm || '_SYSADMIN_FR';
 
 -- construct the 3 Access Role SCHEMA LEVEL, for Read, Write & Create
 SET sarR =  $dbNm || '_' || $scNm || '_R_AR';  -- READ access role

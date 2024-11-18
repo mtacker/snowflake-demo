@@ -30,7 +30,7 @@
 ---------------------------------------------------------------------------------------------
 SET beNm = 'cpg';        -- Business Entity / Segment
 SET dbNm = 'assetavail';    -- Database Name
-SET scNm = 'db0';     -- Schema Name
+SET scNm = 'dbo';     -- Schema Name
 
 -- construct the database name and delegated admin role
 SET prefixNm = $beNm;

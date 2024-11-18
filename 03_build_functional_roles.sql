@@ -1,12 +1,12 @@
 ----------------------------------------------------------------------------------------
- SCRIPT:    Environment Creation Script - Functional Roles
+  -- SCRIPT:    Environment Creation Script - Functional Roles
   -- 
 
   -- Desc:  The below scripts are building out the functional roles needed which will be
   --        granted Account Level Access roles for building personas in Snowflake.
 
   
-  YY-MM-DD WHO          CHANGE DESCRIPTION
+  -- YY-MM-DD WHO          CHANGE DESCRIPTION
   -------- ------------ -----------------------------------------------------------------
   -- ToDO:
   --
@@ -99,8 +99,10 @@ GRANT ROLE CPG_ASSETAVAIL_SYSADMIN_FR TO ROLE IDENTIFIER($mgtSysAdmin);
 -- 4. GRANT OUR VARIOUS LOCAL FULL ENGINEERIN ROLES TO HIGHER LEVEL FUNCTIONAL ROLES
 ---------------------------------------------------------------
 GRANT ROLE BP_CUSTOMER_CUST360_FULL_AR TO ROLE IDENTIFIER($dnaEngC);
-GRANT ROLE HR_PEOPLE_EMP_FULL_AR TO ROLE IDENTIFIER($dnaEngC);
-GRANT ROLE PNC_SALES_INVOICES_FULL_AR TO ROLE IDENTIFIER($dnaEngC);
+GRANT ROLE HR_PEOPLE_EMPLOYEE_FULL_AR TO ROLE IDENTIFIER($dnaEngC);
+GRANT ROLE PNC_SALES_BRONZE_FULL_AR TO ROLE IDENTIFIER($dnaEngC);
+GRANT ROLE PNC_SALES_SILVER_FULL_AR TO ROLE IDENTIFIER($dnaEngC);
+GRANT ROLE PNC_SALES_GOLD_FULL_AR TO ROLE IDENTIFIER($dnaEngC);
 -- Note> For fun we're not going to give DNA_ENGINEER_FR access to read the CPG database
 GRANT ROLE CPG_ASSETAVAIL_DBO_FULL_AR TO ROLE IDENTIFIER($cpgEngC);
 
@@ -109,8 +111,10 @@ GRANT ROLE CPG_ASSETAVAIL_DBO_FULL_AR TO ROLE IDENTIFIER($cpgEngC);
 -- 5. CREATE GRANTS TO ANALYST FUNCTIONAL ROLES
 ---------------------------------------------------------------
 GRANT ROLE BP_CUSTOMER_CUST360_R_AR TO ROLE IDENTIFIER($dnaAnaR) ;
-GRANT ROLE HR_PEOPLE_EMP_R_AR TO ROLE IDENTIFIER($dnaAnaR);
-GRANT ROLE PNC_SALES_INVOICES_R_AR TO ROLE IDENTIFIER($dnaAnaR);
+GRANT ROLE HR_PEOPLE_EMPLOYEE_R_AR TO ROLE IDENTIFIER($dnaAnaR);
+GRANT ROLE PNC_SALES_BRONZE_R_AR TO ROLE IDENTIFIER($dnaAnaR);
+GRANT ROLE PNC_SALES_SILVER_R_AR TO ROLE IDENTIFIER($dnaAnaR);
+GRANT ROLE PNC_SALES_GOLD_R_AR TO ROLE IDENTIFIER($dnaAnaR);
 GRANT ROLE CPG_ASSETAVAIL_DBO_R_AR TO ROLE IDENTIFIER($cpgAnaR);
 
 ----------------------------------------------------------------------
