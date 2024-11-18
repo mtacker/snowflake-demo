@@ -4,13 +4,13 @@
 --   -- Desc:
 --   --        This script is run manually to create the following objects:
 --   --
---   --        Admin platform database adm_platform_DB
---   --        adm_platform_DB.DEPLOY schema is where the following objects will be created:
+--   --        Admin platform database 
+--   --        .DEPLOY schema is where the following objects will be created:
 --   --        GITHUB_SECRET, GITHUB_API_INTEGRATION & SNOWFLAKE_GIT_REPO
 --   -- 
 --   --        This script also initializes roles and role hierarchies to support
 --   --        our basic RBAC & Security model.
---   --        Also creates adm_platform_DB_WH, the warehouse dedicated to adm_platform_DB.
+--   --        Also creates _WH, the warehouse dedicated to .
 --   --        
 --   -- Manual Account setup:
 --   --         snow sql -f "./apps/01_manual_account_setup.sql"; 

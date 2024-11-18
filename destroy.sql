@@ -2,8 +2,8 @@ USE ROLE ACCOUNTADMIN;
 DROP ROLE IF EXISTS adm_platform_ALERTS_FULL_AR;
 DROP ROLE IF EXISTS adm_platform_ALERTS_RW_AR;
 DROP ROLE IF EXISTS adm_platform_ALERTS_R_AR;
-DROP ROLE IF EXISTS adm_platform_DB_WH_WO_AR;
-DROP ROLE IF EXISTS adm_platform_DB_WH_WU_AR;
+DROP ROLE IF EXISTS _WH_WO_AR;
+DROP ROLE IF EXISTS _WH_WU_AR;
 DROP ROLE IF EXISTS adm_platform_DEPLOY_FULL_AR;
 DROP ROLE IF EXISTS adm_platform_DEPLOY_RW_AR;
 DROP ROLE IF EXISTS adm_platform_DEPLOY_R_AR;
@@ -53,12 +53,12 @@ DROP DATABASE IF EXISTS DEV_DB;
 DROP DATABASE IF EXISTS MGT_platform_DB;
 DROP DATABASE IF EXISTS PRD_DB;
 DROP DATABASE IF EXISTS QA_DB;
-DROP DATABASE IF EXISTS adm_platform_DB;
+DROP DATABASE IF EXISTS ;
 DROP DATABASE IF EXISTS BP_CUSTOMER_DB;
 DROP DATABASE IF EXISTS CPG_ASSETAVAIL_DB;
 DROP DATABASE IF EXISTS HR_PEOPLE_DB;
 DROP DATABASE IF EXISTS PNC_SALES_DB;
-DROP WAREHOUSE IF EXISTS adm_platform_DB_WH;
+DROP WAREHOUSE IF EXISTS _WH;
 DROP WAREHOUSE IF EXISTS BP_CUSTOMER_DB_WH;
 DROP WAREHOUSE IF EXISTS CPG_ASSETAVAIL_DB_WH;
 DROP WAREHOUSE IF EXISTS HR_PEOPLE_DB_WH;
@@ -71,13 +71,13 @@ DROP WAREHOUSE IF EXISTS PNC_SALES_DB_WH;
 --   -- Desc:
 --   --        This script is run manually to create the following objects:
 --   --
---   --        Admin platform database adm_platform_DB
---   --        adm_platform_DB.DEPLOY schema is where the following objects will be created:
+--   --        Admin platform database 
+--   --        .DEPLOY schema is where the following objects will be created:
 --   --        GITHUB_SECRET, GITHUB_API_INTEGRATION & SNOWFLAKE_GIT_REPO
 --   -- 
 --   --        This script also initializes roles and role hierarchies to support
 --   --        our basic RBAC & Security model.
---   --        Also creates adm_platform_DB_WH, the warehouse dedicated to adm_platform_DB.
+--   --        Also creates _WH, the warehouse dedicated to .
 --   --        
 --   -- Manual Account setup:
 --   --         snow sql -f "./apps/01_manual_account_setup.sql"; 

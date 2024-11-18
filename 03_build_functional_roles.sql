@@ -33,13 +33,20 @@ set dnaSysAdmin = 'DNA_SYSADMIN_FR';    -- DNA_SYSADMIN_FR is currently envision
 set cpgSysAdmin = 'CPG_SYSADMIN_FR';    -- DNA_SYSADMIN_FR is currently envisioned to have all LOCAL SYSADMIN roles
                                         -- roll up to it. Think of it as a DBA role. But STILL must have PDE_SYSADMIN_FR
                                         -- in order to drop and create databases.
-SET admSysAdmin = 'ADM_SYSADMIN_FR';     -- Admin role that can make changes to all schemas in adm_platform_DB.
-                                         -- (Yvonne, I'm going to change adm_platform_DB to ADM_PLATFORM_DB after your session yesterday). 
+set bpSysAdmin = 'BP_SYSADMIN_FR';    -- DNA_SYSADMIN_FR is currently envisioned to have all LOCAL SYSADMIN roles
+                                        -- roll up to it. Think of it as a DBA role. But STILL must have PDE_SYSADMIN_FR
+                                        -- in order to drop and create databases.
+set pncSysAdmin = 'PNC_SYSADMIN_FR';    -- DNA_SYSADMIN_FR is currently envisioned to have all LOCAL SYSADMIN roles
+                                        -- roll up to it. Think of it as a DBA role. But STILL must have PDE_SYSADMIN_FR
+                                        -- in order to drop and create databases.
+SET admSysAdmin = 'ADM_SYSADMIN_FR';     -- Admin role that can make changes to all schemas in .
+                                         -- (Yvonne, I'm going to change  to ADM_PLATFORM_DB after your session yesterday). 
 
 SET dnaEngC = 'DNA_ENGINEER_FR';        -- Highly priviledged DNA Engineer. Inherits ALL permissions from Read and Read/Write 
                                         -- but can also has access to a ton of other stuff in the schema. Full Engineers can resize Warehouses.
                                         -- The only thing it can't do is drop and create schemas or databases.
-SET cpgEngC = 'CPG_ENGINEER_FR';        -- Highly priviledged DNA Engineer. Inherits ALL permissions from Read and Read/Write 
+
+SET hrEngC = 'HR_ENGINEER_FR';        -- Highly priviledged DNA Engineer. Inherits ALL permissions from Read and Read/Write 
                                         -- but can also has access to a ton of other stuff in the schema. Full Engineers can resize Warehouses.
                                         -- The only thing it can't do is drop and create schemas or databases.
 
@@ -88,8 +95,8 @@ GRANT ROLE BP_CUSTOMER_SYSADMIN_FR TO ROLE IDENTIFIER($dnaSysAdmin);
 GRANT ROLE HR_PEOPLE_SYSADMIN_FR TO ROLE IDENTIFIER($dnaSysAdmin);
 GRANT ROLE PNC_SALES_SYSADMIN_FR TO ROLE IDENTIFIER($dnaSysAdmin);
 GRANT ROLE CPG_ASSETAVAIL_SYSADMIN_FR TO ROLE IDENTIFIER($cpgSysAdmin);
--- CREATE ROLE HEIRARCHY FOR adm_platform_DB
-GRANT ROLE adm_platform_SYSADMIN_FR TO ROLE IDENTIFIER($admSysAdmin);
+-- CREATE ROLE HEIRARCHY FOR 
+GRANT ROLE ADM_PLATFORM_SYSADMIN_FR TO ROLE IDENTIFIER($admSysAdmin);
 GRANT ROLE BP_CUSTOMER_SYSADMIN_FR TO ROLE IDENTIFIER($admSysAdmin);
 GRANT ROLE HR_PEOPLE_SYSADMIN_FR TO ROLE IDENTIFIER($admSysAdmin);
 GRANT ROLE PNC_SALES_SYSADMIN_FR TO ROLE IDENTIFIER($admSysAdmin);
@@ -99,12 +106,13 @@ GRANT ROLE CPG_ASSETAVAIL_SYSADMIN_FR TO ROLE IDENTIFIER($admSysAdmin);
 -- 4. GRANT OUR VARIOUS LOCAL FULL ENGINEERIN ROLES TO HIGHER LEVEL FUNCTIONAL ROLES
 ---------------------------------------------------------------
 GRANT ROLE BP_CUSTOMER_CUST360_FULL_AR TO ROLE IDENTIFIER($dnaEngC);
-GRANT ROLE HR_PEOPLE_EMPLOYEE_FULL_AR TO ROLE IDENTIFIER($dnaEngC);
-GRANT ROLE PNC_SALES_BRONZE_FULL_AR TO ROLE IDENTIFIER($dnaEngC);
-GRANT ROLE PNC_SALES_SILVER_FULL_AR TO ROLE IDENTIFIER($dnaEngC);
-GRANT ROLE PNC_SALES_GOLD_FULL_AR TO ROLE IDENTIFIER($dnaEngC);
--- Note> For fun we're not going to give DNA_ENGINEER_FR access to read the CPG database
-GRANT ROLE CPG_ASSETAVAIL_DBO_FULL_AR TO ROLE IDENTIFIER($cpgEngC);
+GRANT ROLE CPG_ASSETAVAIL_DBO_FULL_AR TO ROLE IDENTIFIER($dnaEngC);
+-- Note> For fun we're not going to give DNA_ENGINEER_FR access to read the PNC database
+GRANT ROLE PNC_SALES_BRONZE_FULL_AR TO ROLE IDENTIFIER($pncEngC);
+GRANT ROLE PNC_SALES_SILVER_FULL_AR TO ROLE IDENTIFIER($pncEngC);
+GRANT ROLE PNC_SALES_GOLD_FULL_AR TO ROLE IDENTIFIER($pncEngC);
+-- Note> For fun we're not going to give DNA_ENGINEER_FR access to read the HR database
+GRANT ROLE HR_PEOPLE_EMPLOYEE_FULL_AR TO ROLE IDENTIFIER($hrEngC);
 
 
 ---------------------------------------------------------------

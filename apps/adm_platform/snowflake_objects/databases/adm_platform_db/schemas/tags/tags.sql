@@ -4,7 +4,7 @@
 -- SCRIPT:    This script sets up session variables that will be used by build_schema.sql
 --        to create database (if not exists), schema, roles and roles hierarchy.  
 -- 
---        adm_platform_DB will be our Account platform database with limited acccess.
+--         will be our Account platform database with limited acccess.
 --        Schemas include:
 --            DEPLOY_SCHEMA   - git repository for EXECUTE IMMEDIATE FROM calls
 --            ALERTS_SCHEMA   - to maintain standards around alerting for the account

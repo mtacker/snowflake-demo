@@ -41,7 +41,7 @@
 
 
 -- TABLES
-USE SCHEMA adm_platform_DB.DEPLOY;
+USE SCHEMA .DEPLOY;
 ALTER GIT REPOSITORY SNOWFLAKE_GIT_REPO FETCH;
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowflake_objects/databases/pnc_sales_db/schemas/bronze/tables/customer.sql;
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowflake_objects/databases/pnc_sales_db/schemas/bronze/tables/product.sql;
@@ -62,10 +62,10 @@ EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowfl
 -- │ Stage 'PNC_SALES_DB.BRONZE.SNOWFLAKE_GIT_REPO' does not exist or not         │
 -- │ authorized. 
 -- inserting FETCH command because of weird error that keeps popping up ^
-USE SCHEMA adm_platform_DB.DEPLOY;
+USE SCHEMA .DEPLOY;
 ALTER GIT REPOSITORY SNOWFLAKE_GIT_REPO FETCH;
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowflake_objects/databases/pnc_sales_db/schemas/bronze/views/customer_orders.sql;
-USE SCHEMA adm_platform_DB.DEPLOY;
+USE SCHEMA .DEPLOY;
 ALTER GIT REPOSITORY SNOWFLAKE_GIT_REPO FETCH;
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowflake_objects/databases/pnc_sales_db/schemas/silver/views/customer_orders.sql;
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc_sales/snowflake_objects/databases/pnc_sales_db/schemas/silver/views/product_inventory.sql;
