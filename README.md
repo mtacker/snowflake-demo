@@ -43,7 +43,7 @@ In this new (occassional) error, Snowflake seems to forget the schema location o
 
 NOTE> Line 56 in the error is now line 67 in the failing script: [sf_deploy_prd.sql]](apps/sf_deploy_prd.sql).  It's now line 67 because I added the error text and another FETCH call to see if I can "remind" EXECUTE IMMEDIATE FROM of the correct stage location.  
 
-And just now I had to add a "reminder" of the location of the git stage before the following line that was failing. But the last two EXECUTE IMMEDIATE FROM statements in that script finished successfully.  Very odd.  
+And just now I had to add a "reminder" of the location of the git stage before the following line that was failing ([see above line 70]]](apps/sf_deploy_prd.sql)). But the last two EXECUTE IMMEDIATE FROM statements in that script finished successfully.  Very odd.  
 
 ![alt text](.images/PNC_SALES_DB.BRONZE.SNOWFLAKE_GIT_REPO.png)
 
