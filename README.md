@@ -75,5 +75,4 @@ For Example:
 Actual for this repo:
 ![Our Current Directory Structure](./.images/actualDirectoryStructure.png)
 
-
 ![alt text](image.png)
