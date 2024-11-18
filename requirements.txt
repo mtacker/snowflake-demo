@@ -1,1 +1,1 @@
-snowflake-cli
+snowflake-cli==3.0.1
