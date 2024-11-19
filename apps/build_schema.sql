@@ -56,7 +56,8 @@ USE ROLE SECURITYADMIN;
 
 -- to ensure Central Admin has ability to manage the delegated permissions
 GRANT ROLE IDENTIFIER($pltfrAdmin) TO ROLE SYSADMIN;
-GRANT ROLE IDENTIFIER($localfrAdmin) TO ROLE IDENTIFIER($pltfrAdmin);
+-- GRANT ROLE IDENTIFIER($localfrAdmin) TO ROLE IDENTIFIER($pltfrAdmin);  << Centralized Administration
+GRANT ROLE IDENTIFIER($localfrAdmin) TO ROLE SYSADMIN;                  -- << De-centralized Administration
 GRANT ROLE IDENTIFIER($sarC) TO ROLE IDENTIFIER($localfrAdmin);
 GRANT ROLE IDENTIFIER($sarW) TO ROLE IDENTIFIER($sarC); 
 GRANT ROLE IDENTIFIER($sarR) TO ROLE IDENTIFIER($sarW);  
