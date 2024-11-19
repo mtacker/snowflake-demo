@@ -5,11 +5,16 @@
 - Orchestration using Snowflake's new ```EXECUTE IMMEDIATE FROM``` feature  
 - Git Integration with Snowflake using a repository stage  
 
+## Use of Git repository in Snowflake
 <p align="center">
     <img src=".images/git_integration.png" alt="Git Integration with Snowflake using a local stage" width="600" height="600">
 </p>
 
-![RBAC Model](.images/rbac_diagram.png)
+## Current RBAC Model
+<p align="center">
+    <img src=".images/rbac_diagram.png" alt="RBAC Model" width="600" height="600">
+</p>
+
 --------------------------------------------------------------  
 ## Directory Structure 
 
