@@ -7,7 +7,7 @@
 
 ![Git Integration with Snowflake using a local stage](.images/git_integration.png)  
 
-![RBAC Model](.images/rbac_diagram.png width=100 height=100)
+![RBAC Model](.images/rbac_diagram.png)
 --------------------------------------------------------------  
 ## Directory Structure 
 
