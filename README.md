@@ -21,10 +21,10 @@ https://docs.snowflake.com/en/developer-guide/git/git-overview
 
 
 
-**Our proposed directory structure is inpired by the Snowflake Object Hierarchy:**  
+## Our proposed directory structure is inpired by the Snowflake Object Hierarchy: 
 ![Snowflake Object Hierarchy](./.images/snowflakeObjectHierarchy.png)
 
-For Example:  
+**For Example:**  
 ```
 mkdir -p ./apps/adm/{snowflake_objects/databases/adm_platform_db/schemas/alerts/{externalTables,fileFormats,maskingPolicies,pipes,stages,streams,tables,tasks,views,sequences,storedProcedures,udf,streams,tasks},scripts};  
 mkdir -p ./apps/adm/{snowflake_objects/databases/adm_platform_db/schemas/tags/{externalTables,fileFormats,maskingPolicies,pipes,stages,streams,tables,tasks,views,sequences,storedProcedures,udf,streams,tasks},scripts};  
