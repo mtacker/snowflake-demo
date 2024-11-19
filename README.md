@@ -11,10 +11,8 @@
 </p>
 
 ## Current RBAC Model
-<p align="center">
-    <img src=".images/rbac_diagram.png" alt="RBAC Model" width="752" height="442">
-</p>
 
+![RBAC Model](.images/rbac_diagram.png)
 --------------------------------------------------------------  
 ## Local Directory Structure 
 
