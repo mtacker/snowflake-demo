@@ -12,7 +12,7 @@
 
 ## Current RBAC Model
 <p align="center">
-    <img src=".images/rbac_diagram.png" alt="RBAC Model" width="602" height="354">
+    <img src=".images/rbac_diagram.png" alt="RBAC Model" width="752" height="442">
 </p>
 
 --------------------------------------------------------------  
