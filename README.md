@@ -7,7 +7,7 @@
 
 ![Git Integration with Snowflake using a local stage](.images/git_integration.png)  
 
-<img src=".images/git_integration.png" alt="placeholder" width="500" height="500">
+<img src=".images/git_integration.png" alt="Git Integration with Snowflake using a local stage" width="600" height="600">
 
 ![RBAC Model](.images/rbac_diagram.png)
 --------------------------------------------------------------  
