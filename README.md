@@ -32,5 +32,5 @@ mkdir -p ./apps/adm/{snowflake_objects/databases/adm_platform_db/schemas/tags/{e
 
 ![Resulting Directory Structure](./.images/directoryStructure.png)  
 
-Actual for this repo:  
+**Actual for this repo:**  
 ![Our Current Directory Structure](./.images/actualDirectoryStructure.png)  
