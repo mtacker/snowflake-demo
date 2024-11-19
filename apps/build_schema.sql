@@ -83,10 +83,15 @@ GRANT OWNERSHIP ON ROLE IDENTIFIER($afrRead)   TO ROLE IDENTIFIER($scimRl) COPY 
 -- 3. DELEGATED ADMIN CREATE database 
 -------------------------------------------------------------
 USE ROLE ACCOUNTADMIN;
-GRANT CREATE DATABASE ON ACCOUNT TO ROLE IDENTIFIER($pltfrAdmin);
-
--- create database with platform admin.  
-USE ROLE IDENTIFIER($pltfrAdmin);
+-------------------------------------------------------------
+-- GRANT CREATE DATABASE ON ACCOUNT TO ROLE IDENTIFIER($pltfrAdmin);
+-- -- create database with platform admin.  
+-- USE ROLE IDENTIFIER($pltfrAdmin);
+GRANT CREATE DATABASE ON ACCOUNT TO ROLE IDENTIFIER($localfrAdmin);
+-- OR, for decentralized account management, we can 
+-- create database with local sysadmin.  
+USE ROLE IDENTIFIER($localfrAdmin);
+-------------------------------------------------------------
 CREATE DATABASE IF NOT EXISTS IDENTIFIER($databaseNm);
 -- Below not needed, but shows how to properly transfer ownership of a database to another role:
 -- GRANT OWNERSHIP ON DATABASE IDENTIFIER($databaseNm) TO ROLE IDENTIFIER($pltfrAdmin) REVOKE CURRENT GRANTS;
@@ -191,7 +196,9 @@ GRANT CREATE ROW ACCESS POLICY ON SCHEMA IDENTIFIER($schemaNm)  TO ROLE IDENTIFI
 -------------------------------------------------------------
 -- 6. Best practice to always drop the PUBLIC schema
 -------------------------------------------------------------
-USE ROLE IDENTIFIER($pltfrAdmin); -- DATABASE AND SCHEMAS OWNED BY PLATFORM ADMIN!
+-- USE ROLE IDENTIFIER($pltfrAdmin); -- DATABASE AND SCHEMAS OWNED BY PLATFORM ADMIN!
+-- OR! they could be owned by local sysadmin!
+USE ROLE IDENTIFIER($localfrAdmin); -- DATABASE AND SCHEMAS OWNED BY PLATFORM ADMIN!
 DROP SCHEMA IF EXISTS IDENTIFIER($publicSchemaNm); -- Best practice to always drop the PUBLIC schema
 
 -------------------------------------------------------------
@@ -224,7 +231,7 @@ CREATE WAREHOUSE IF NOT EXISTS IDENTIFIER($whNm) WITH
 -- Assume Delegated Admin, so transfer ownership
 -- Can grant to either platform sysadmin or local sysadmin. 
 -- -- Grant to local domains if require autonomy in maintaining/managing warehouses.
-GRANT OWNERSHIP ON WAREHOUSE IDENTIFIER($whNm) TO ROLE IDENTIFIER($pltfrAdmin);
+GRANT OWNERSHIP ON WAREHOUSE IDENTIFIER($whNm) TO ROLE IDENTIFIER($localfrAdmin);
 
 -- ---------------------------------------------------------------
 -- -- 9. USERADMIN create our warehouse roles
@@ -242,8 +249,11 @@ GRANT OPERATE, MODIFY ON WAREHOUSE IDENTIFIER($whNm) TO ROLE IDENTIFIER($warO);
 --- Create our warehouse role heirarchy
 GRANT ROLE IDENTIFIER($warU) TO ROLE IDENTIFIER($warO);
 -- Assume Delegated Admin, so transfer ownership of these functional roles
-GRANT OWNERSHIP ON ROLE IDENTIFIER($warU) TO ROLE IDENTIFIER($pltfrAdmin) COPY CURRENT GRANTS;
-GRANT OWNERSHIP ON ROLE IDENTIFIER($warO) TO ROLE IDENTIFIER($pltfrAdmin) COPY CURRENT GRANTS;
+
+-- GRANT OWNERSHIP ON ROLE IDENTIFIER($warU) TO ROLE IDENTIFIER($pltfrAdmin) COPY CURRENT GRANTS;
+-- GRANT OWNERSHIP ON ROLE IDENTIFIER($warO) TO ROLE IDENTIFIER($pltfrAdmin) COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE IDENTIFIER($warU) TO ROLE IDENTIFIER($localfrAdmin) COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE IDENTIFIER($warO) TO ROLE IDENTIFIER($localfrAdmin) COPY CURRENT GRANTS;
 
 -- Assign warehouse user to functional roles
 GRANT ROLE IDENTIFIER($warU) TO ROLE IDENTIFIER($sarR);
