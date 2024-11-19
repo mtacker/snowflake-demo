@@ -1,11 +1,11 @@
-# This repo intends to demonstrate the following  
+# This Repo Intends to Demonstrate the Following  
 - RBAC/Security Model using Custom Roles together with Functional Roles  
 - Use of Github Actions for CI/CD  
-- Automated deployments to multiple Snowflake Accounts (DEV/QA/PRD) via Github Secrets  
+- Automated deployments to multiple Snowflake Accounts (DEV/QA/PRD) using Github Secrets  
 - Orchestration using Snowflake's new ```EXECUTE IMMEDIATE FROM``` feature  
-- Git Integration with Snowflake using a repository stage  
+- Git Integration with Snowflake using a local stage  
 
-## Use of Git repository in Snowflake
+## Git repository in Snowflake
 <p align="center">
     <img src=".images/git_integration.png" alt="Git Integration with Snowflake using a local stage" width="600" height="600">
 </p>
