@@ -25,7 +25,9 @@
 --         
 -- YY-MM-DD WHO          CHANGE DESCRIPTION
 -------- ------------ -----------------------------------------------------------------
--- To-Do         
+-- 2024-11-19         This is the NEW version.
+--                    Use this if you want DE-CENTRALIZED control of database objects.
+--                    Here each local sysadmin owns the creation of databases and warehouses.
 ---------------------------------------------------------------------------------------
 -- Right now all these privileges to PROD as well as the lower environments! This is 
 -- not optimal. We would want different (fewer) write privileges in Prod.
