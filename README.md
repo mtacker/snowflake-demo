@@ -5,6 +5,12 @@
 - Automated deployments to multiple Snowflake Accounts (DEV/QA/PRD) using Github Secrets  
 - Orchestration using Snowflake's new ```EXECUTE IMMEDIATE FROM``` feature  
 - Git Integration with Snowflake using a local stage  
+## ToDo  
+Add:  
+- Snowflake Managed Schemas  
+- Framework for notifications and alerts  
+- Basic framework for tagging  
+- Example of how to do masking (column/row)  
 ---  
 
 ## Git Integration with Snowflake using a local stage 
