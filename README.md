@@ -21,7 +21,7 @@ https://docs.snowflake.com/en/developer-guide/git/git-overview
 
 
 
-Our proposed directory structure is inpired by the Snowflake Object Hierarchy:  
+**Our proposed directory structure is inpired by the Snowflake Object Hierarchy:**  
 ![Snowflake Object Hierarchy](./.images/snowflakeObjectHierarchy.png)
 
 For Example:  
