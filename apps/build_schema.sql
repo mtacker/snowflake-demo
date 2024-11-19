@@ -231,6 +231,7 @@ CREATE WAREHOUSE IF NOT EXISTS IDENTIFIER($whNm) WITH
 -- Assume Delegated Admin, so transfer ownership
 -- Can grant to either platform sysadmin or local sysadmin. 
 -- -- Grant to local domains if require autonomy in maintaining/managing warehouses.
+-- GRANT OWNERSHIP ON WAREHOUSE IDENTIFIER($whNm) TO ROLE IDENTIFIER($pltfrAdmin);
 GRANT OWNERSHIP ON WAREHOUSE IDENTIFIER($whNm) TO ROLE IDENTIFIER($localfrAdmin);
 
 -- ---------------------------------------------------------------
