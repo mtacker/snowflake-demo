@@ -57,4 +57,4 @@ EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objec
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/silver/views/product_inventory.sql;
 
 -- PROCEDURES
-EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/bronze/storedProcedures/load_bronze_customer_orders.sql;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/bronze/stored_procedures/load_bronze_customer_orders.sql;
