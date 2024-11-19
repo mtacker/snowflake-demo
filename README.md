@@ -16,13 +16,11 @@
 </p>
 
 --------------------------------------------------------------  
-## Directory Structure 
+## Local Directory Structure 
 
 
 
-<!-- ```
-mkdir -p ./apps/pnc_sales/{snowflake_objects/databases/pnc_sales_db/schemas/alerts/{externalTables,fileFormats,maskingPolicies,pipes,stages,streams,tables,tasks,views,sequences,storedProcedures,udfs,streams,tasks},scripts};  
-``` -->
+
 
 Our proposed directory structure is inpired by the Snowflake Object Hierarchy:  
 ![Snowflake Object Hierarchy](./.images/snowflakeObjectHierarchy.png)
