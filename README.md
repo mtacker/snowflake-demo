@@ -8,9 +8,9 @@
 
 ## Git repository in Snowflake
 https://docs.snowflake.com/en/developer-guide/git/git-overview
-<p align="center">
+<!-- <p align="center"> -->
     <img src=".images/git_integration.png" alt="Git Integration with Snowflake using a local stage" width="600" height="600">
-</p>
+<!-- </p> -->
 
 ## Current RBAC Model
 
