@@ -30,7 +30,7 @@ mkdir -p ./apps/adm/{snowflake_objects/databases/adm_platform_db/schemas/alerts/
 mkdir -p ./apps/adm/{snowflake_objects/databases/adm_platform_db/schemas/tags/{externalTables,fileFormats,maskingPolicies,pipes,stages,streams,tables,tasks,views,sequences,storedProcedures,udf,streams,tasks},scripts};  
 ```
 
-![Resulting Directory Structure](./.images/directoryStructure.png)
+![Resulting Directory Structure](./.images/directoryStructure.png)  
 
-Actual for this repo:
-![Our Current Directory Structure](./.images/actualDirectoryStructure.png)
+Actual for this repo:  
+![Our Current Directory Structure](./.images/actualDirectoryStructure.png)  
