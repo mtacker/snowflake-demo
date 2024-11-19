@@ -10,21 +10,19 @@
 https://docs.snowflake.com/en/developer-guide/git/git-overview
 
 <img src=".images/git_integration.png" alt="Git Integration with Snowflake using a local stage" width="600" height="600">
-
-## Current RBAC Model
-
-![RBAC Model](.images/rbac_diagram.png)
 --------------------------------------------------------------  
+## Current RBAC Model  
+
+![RBAC Model](.images/rbac_diagram.png)  
+--------------------------------------------------------------  
+
+
 ## Local Directory Structure 
 
-
-
-
-
-## Our proposed directory structure is inpired by the Snowflake Object Hierarchy: 
+Our proposed directory structure is inpired by the Snowflake Object Hierarchy: 
 ![Snowflake Object Hierarchy](./.images/snowflakeObjectHierarchy.png)
 
-**For Example:**  
+For Example:  
 ```
 mkdir -p ./apps/adm/{snowflake_objects/databases/adm_platform_db/schemas/alerts/{externalTables,fileFormats,maskingPolicies,pipes,stages,streams,tables,tasks,views,sequences,storedProcedures,udf,streams,tasks},scripts};  
 mkdir -p ./apps/adm/{snowflake_objects/databases/adm_platform_db/schemas/tags/{externalTables,fileFormats,maskingPolicies,pipes,stages,streams,tables,tasks,views,sequences,storedProcedures,udf,streams,tasks},scripts};  
@@ -32,5 +30,5 @@ mkdir -p ./apps/adm/{snowflake_objects/databases/adm_platform_db/schemas/tags/{e
 
 ![Resulting Directory Structure](./.images/directoryStructure.png)  
 
-**Actual for this repo:**  
+Actual for this repo:   
 ![Our Current Directory Structure](./.images/actualDirectoryStructure.png)  
