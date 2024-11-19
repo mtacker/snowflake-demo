@@ -7,12 +7,12 @@
 
 ## Use of Git repository in Snowflake
 <p align="center">
-    <img src=".images/git_integration.png" alt="Git Integration with Snowflake using a local stage" width="600" height="600">
+    <img src=".images/git_integration.png" alt="Git Integration with Snowflake using a local stage" width="600" height="00">
 </p>
 
 ## Current RBAC Model
 <p align="center">
-    <img src=".images/rbac_diagram.png" alt="RBAC Model" width="600" height="600">
+    <img src=".images/rbac_diagram.png" alt="RBAC Model" width="602" height="354">
 </p>
 
 --------------------------------------------------------------  
