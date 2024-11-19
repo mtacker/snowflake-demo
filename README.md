@@ -22,12 +22,13 @@
 
 Our proposed directory structure is inpired by the Snowflake Object Hierarchy:  
 ![Snowflake Object Hierarchy](./.images/snowflakeObjectHierarchy.png)
+
+For Example:  
 ```
 mkdir -p ./apps/adm/{snowflake_objects/databases/adm_platform_db/schemas/alerts/{externalTables,fileFormats,maskingPolicies,pipes,stages,streams,tables,tasks,views,sequences,storedProcedures,udf,streams,tasks},scripts};  
 mkdir -p ./apps/adm/{snowflake_objects/databases/adm_platform_db/schemas/tags/{externalTables,fileFormats,maskingPolicies,pipes,stages,streams,tables,tasks,views,sequences,storedProcedures,udf,streams,tasks},scripts};  
 ```
 
-For Example:  
 ![Resulting Directory Structure](./.images/directoryStructure.png)
 
 Actual for this repo:
