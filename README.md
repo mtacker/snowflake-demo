@@ -13,13 +13,13 @@ https://docs.snowflake.com/en/developer-guide/git/git-overview
 <img src=".images/git_integration.png" alt="Git Integration with Snowflake using a local stage" width="600" height="600">
 
 ---  
-## Current RBAC Model  
+## Segregation of Access Using RBAC    
 
 ![RBAC Model](.images/rbac_diagram.png)  
 
 ---
 
-## Local Directory Structure 
+## Proposed Directory Structure 
 
 Our proposed directory structure is inpired by the Snowflake Object Hierarchy: 
 ![Snowflake Object Hierarchy](./.images/snowflakeObjectHierarchy.png)
