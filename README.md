@@ -1,4 +1,4 @@
-# Snowflake Example Code Demonstrating:  
+# Proposed framework for managed use of Snowflake:  
 - RBAC model fully fleshed out demonstrating the use of Functional Roles  
 - 5 hypothetical databases to illustrate security across multiple teams (i.e. Functional Roles)    
 - Use of Github Actions for CI/CD  
