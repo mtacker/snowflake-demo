@@ -7,7 +7,7 @@
 - Git Integration with Snowflake using a local stage  
 ---  
 
-## Git repository in Snowflake
+## Git Integration with Snowflake using a local stage 
 https://docs.snowflake.com/en/developer-guide/git/git-overview
 
 <img src=".images/git_integration.png" alt="Git Integration with Snowflake using a local stage" width="600" height="600">
@@ -17,6 +17,7 @@ https://docs.snowflake.com/en/developer-guide/git/git-overview
 
 ![RBAC Model](.images/rbac_diagram.png)  
 
+---
 
 ## Local Directory Structure 
 
