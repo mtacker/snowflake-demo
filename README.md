@@ -40,7 +40,8 @@ mkdir -p ./apps/adm/{snowflake_objects/databases/adm_platform_db/schemas/tags/{e
 ![Resulting Directory Structure](./.images/directoryStructure.png)  
 
 
-Deployment model and directory structure is based on Snowflake's recommended approach. See [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=k20yLpW8-xU).   
+Deployment model and directory structure is based on Snowflake's recommended approach.  
+See [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=k20yLpW8-xU).   
 
 ![Our Current Directory Structure](./.images/actualDirectoryStructure.png) 
 
