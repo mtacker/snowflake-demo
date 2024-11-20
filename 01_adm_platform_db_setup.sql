@@ -269,13 +269,11 @@ GRANT ROLE IDENTIFIER($warO) TO ROLE IDENTIFIER($localfrAdmin);
 
 
 
+---------------------------------------------------------------------------------
+-- File .github_setup.sql is not committed to the repo.
 
-
-
-
----------------------------------------------------------------
--- END SCHEMA CREATION. OPTIONAL, CONTINUE TO TESTS BELOW.
----------------------------------------------------------------
+snow sql -f "./.github_setup.sql";
+---------------------------------------------------------------------------------
 
 
 
