@@ -1,12 +1,12 @@
 # Proposed framework for managed use of Snowflake demonstrating:  
 - RBAC model fully fleshed out using Functional Roles.  
 - 5 hypothetical databases to illustrate security across multiple teams (i.e. Functional Roles).  
-- Use of Github Actions for CI/CD - (evented by commits to branches).  
+- Use of Github Actions and the Snowflake CLI for CI/CD - (evented by commits to branches).  
 - Automated deployments to multiple Snowflake Accounts (DEV/QA/PRD) using Github Secrets.  
 - Orchestration using Snowflake's new ```EXECUTE IMMEDIATE FROM``` feature.  
 - Git Integration with Snowflake using a local stage.  
 
-Deployment model and directory structure is based on Snowflake's recommended approach:  
+Deployment model is based on Snowflake's most recent recommended approach:  
 See [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=k20yLpW8-xU).  
   
 ## ToDo  
