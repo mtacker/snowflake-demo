@@ -105,6 +105,11 @@ GRANT CREATE DATABASE ON ACCOUNT TO ROLE IDENTIFIER($localfrAdmin);
 -- OR, for decentralized account management, we can 
 -- create database with local sysadmin.  
 USE ROLE IDENTIFIER($localfrAdmin);
+-------------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS IDENTIFIER($databaseNm);
+-- Below not needed, but shows how to properly transfer ownership of a database to another role:
+-- GRANT OWNERSHIP ON DATABASE IDENTIFIER($databaseNm) TO ROLE IDENTIFIER($pltfrAdmin) REVOKE CURRENT GRANTS;
+USE DATABASE IDENTIFIER($databaseNm);
 
 -- Optional, Verify:
 -- show databases;
