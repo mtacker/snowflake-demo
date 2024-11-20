@@ -272,8 +272,9 @@ GRANT ROLE IDENTIFIER($warO) TO ROLE IDENTIFIER($localfrAdmin);
 ---------------------------------------------------------------------------------
 -- File .github_setup.sql is not committed to the repo.
 
-snow sql -f "./.github_setup.sql";
----------------------------------------------------------------------------------
+-- snow sql -f "./.github_setup.sql";
+-- source ./_github_setup.sql;
+-------------------------------------------------------------------------------
 
 
 
