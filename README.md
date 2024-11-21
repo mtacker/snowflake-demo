@@ -1,10 +1,10 @@
 # Platform Prototype for Managed use of Snowflake 
- 
+
 Demonstrating:  
 - RBAC model fully fleshed out using Functional Roles.  
-- 5 hypothetical databases to illustrate security across multiple teams (i.e. Functional Roles).  
+- 5 hypothetical databases used to illustrate managed security across multiple teams (via Functional Roles).  
 - Use of Github Actions and the Snowflake CLI for CI/CD - (evented by commits to branches).  
-- Automated deployments to multiple Snowflake Accounts (DEV/QA/PRD) using Github Secrets.  
+- Automated deployments to multiple Snowflake Accounts (dev/qa/prd) using Github Secrets.  
 - Orchestration using Snowflake's new ```EXECUTE IMMEDIATE FROM``` feature.  
 - Git Integration with Snowflake using a local stage.  
 
