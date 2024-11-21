@@ -34,7 +34,7 @@ A commit to Github [triggers main.yml](/.github/workflows/main.yml).  main.yml c
 
 ## Successful workaround for failing APPROACH 1 & 2
 
-Move EXECUTE IMMEDIATE FROM schema builds from our preferred [sf_deploy_prd.sql](apps/sf_deploy_prd.sql) build script to [main.yml]](/.github/workflows/main.yml).  Schemas build if I put EIF calls there! But this separates our build steps and forces us to update 3 places (dev/qa/prd) in main.yml for any new schema. Not ideal.
+Move EXECUTE IMMEDIATE FROM schema builds from our preferred [sf_deploy_prd.sql](apps/sf_deploy_prd.sql) build script to [main.yml](/.github/workflows/main.yml).  Schemas build if I put EIF calls there! But this separates our build steps and forces us to update 3 places (dev/qa/prd) in main.yml for any new schema. Not ideal.
 
 ## Latest issue with EXECUTE IMMEDIATE FROM
 
