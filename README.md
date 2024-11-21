@@ -1,4 +1,6 @@
-# Platform Prototype for Managed use of Snowflake Demonstrating:  
+# Platform Prototype for Managed use of Snowflake 
+ 
+Demonstrating:  
 - RBAC model fully fleshed out using Functional Roles.  
 - 5 hypothetical databases to illustrate security across multiple teams (i.e. Functional Roles).  
 - Use of Github Actions and the Snowflake CLI for CI/CD - (evented by commits to branches).  
