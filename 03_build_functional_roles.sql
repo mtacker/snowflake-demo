@@ -9,7 +9,7 @@
   -- YY-MM-DD WHO          CHANGE DESCRIPTION
   -------- ------------ -----------------------------------------------------------------
   -- ToDO:
-  --
+  -- Add default functional roles to build script and remove from here.
 ----------------------------------------------------------------------------------------
 
 
@@ -21,22 +21,22 @@ set pltfrAdmin = 'PDE_SYSADMIN_FR';     -- PDE_SYSADMIN_FR is a Platform admin F
                                         -- Platform admin can create and drop databases across the entire account.
                                         -- Equates to account sysadmin role but prevents everyone from needing SYSADMIN access!!
 
--- SET admSysAdmin = 'ADM_SYSADMIN_FR';     -- Admin role that can make changes to all schemas in ADM_PLATFORM_DB.
+SET admSysAdmin = 'ADM_SYSADMIN_FR';     -- Admin role that can make changes to all schemas in ADM_PLATFORM_DB.
 
 set dnaSysAdmin = 'DNA_SYSADMIN_FR';    -- DNA_SYSADMIN_FR is currently envisioned to have some or all LOCAL SYSADMIN roles
                                         -- roll up to it. Think of it as a DBA role. But STILL must have PDE_SYSADMIN_FR
                                         -- in order to drop and create databases.
 
-set bpSysAdmin = 'BP_CUSTOMER_SYSADMIN_FR';      -- For testing, BP_SYSADMIN_FR WILL roll up to DNA_SYSADMIN_FR.
+set bpSysAdmin = 'BP_SYSADMIN_FR';      -- For testing, BP_SYSADMIN_FR WILL roll up to DNA_SYSADMIN_FR.
 
-set cpgSysAdmin = 'CPG_ASSETAVAIL_SYSADMIN_FR';    -- For testing, CPG_SYSADMIN_FR WILL roll up to DNA_SYSADMIN_FR.
+set cpgSysAdmin = 'CPG_SYSADMIN_FR';    -- For testing, CPG_SYSADMIN_FR WILL roll up to DNA_SYSADMIN_FR.
 
--- set pncSysAdmin = 'PNC_SALES_SYSADMIN_FR';    -- For testing, PNC_SYSADMIN_FR will NOT roll up to DNA_SYSADMIN_FR.
+set pncSysAdmin = 'PNC_SYSADMIN_FR';    -- For testing, PNC_SYSADMIN_FR will NOT roll up to DNA_SYSADMIN_FR.
 
--- set hrSysAdmin = 'HR_PEOPLE_SYSADMIN_FR';      -- For testing, HR_SYSADMIN_FR will not roll up to DNA_SYSADMIN_FR, and I'm going to try having
---                                         -- it not roll up to PDE_SYSADMIN_FR! This should create a "dead-end" such that even ACCOUNTADMIN
---                                         -- people won't have access to sensitive HR data.
---                                         -- Does not roll up to PDE_SYSADMIN_FR.
+set hrSysAdmin = 'HR_SYSADMIN_FR';      -- For testing, HR_SYSADMIN_FR will not roll up to DNA_SYSADMIN_FR, and I'm going to try having
+                                        -- it not roll up to PDE_SYSADMIN_FR! This should create a "dead-end" such that even ACCOUNTADMIN
+                                        -- people won't have access to sensitive HR data.
+                                        -- Does not roll up to PDE_SYSADMIN_FR.
 
 SET dnaEngC = 'DNA_ENGINEER_FR';        -- Highly priviledged DNA Engineer. Inherits ALL permissions from Read and Read/Write 
                                         -- but can also has access to a ton of other stuff in the schema. Full Engineers can resize Warehouses.
@@ -89,7 +89,7 @@ CREATE ROLE IF NOT EXISTS IDENTIFIER($cpgSysAdmin); -- CPG_SYSADMIN_FR - Create/
 CREATE ROLE IF NOT EXISTS IDENTIFIER($cpgEngC);     -- CPG_ENGINEER_FR - FULL (except DB/Schema) 
 CREATE ROLE IF NOT EXISTS IDENTIFIER($pncSysAdmin); -- PNC_SYSADMIN_FR - Create/Drop Schemas 
 CREATE ROLE IF NOT EXISTS IDENTIFIER($pncEngC);     -- PNC_ENGINEER_FR - FULL (except DB/Schema) 
--- CREATE ROLE IF NOT EXISTS IDENTIFIER($hrSysAdmin);  -- HR_SYSADMIN_FR - Create/Drop Schemas 
+CREATE ROLE IF NOT EXISTS IDENTIFIER($hrSysAdmin);  -- HR_SYSADMIN_FR - Create/Drop Schemas 
 CREATE ROLE IF NOT EXISTS IDENTIFIER($hrEngC);      -- HR_ENGINEER_FR - FULL (except DB/Schema) 
 CREATE ROLE IF NOT EXISTS IDENTIFIER($dnaAnaR);     -- DNA_ANALYST_FR - Read-only for BP & CPG
 CREATE ROLE IF NOT EXISTS IDENTIFIER($hrAnaR);      -- HR_ANALYST_FR - Read-only
@@ -107,7 +107,7 @@ GRANT ROLE IDENTIFIER($bpSysAdmin) TO ROLE IDENTIFIER($dnaSysAdmin);
 GRANT ROLE IDENTIFIER($bpEngC) TO ROLE IDENTIFIER($bpSysAdmin); 
 GRANT ROLE IDENTIFIER($cpgSysAdmin) TO ROLE IDENTIFIER($dnaSysAdmin);
 GRANT ROLE IDENTIFIER($cpgEngC) TO ROLE IDENTIFIER($cpgSysAdmin); 
--- GRANT ROLE IDENTIFIER($admSysAdmin) TO ROLE IDENTIFIER($pltfrAdmin);
+GRANT ROLE IDENTIFIER($admSysAdmin) TO ROLE IDENTIFIER($pltfrAdmin);
 
 ---------------------------------------------------------------
 -- CREATE OUR PNC & HR FUNCTIONAL ROLE HIERARCHY
@@ -146,66 +146,18 @@ GRANT ROLE HR_PEOPLE_EMPLOYEE_R_AR TO ROLE IDENTIFIER($hrAnaR);
 
 USE ROLE PDE_SYSADMIN_FR;
 USE ROLE ADM_SYSADMIN_FR; 
-DROP DATABASE BP_CUSTOMER_DB;
 USE ROLE DNA_SYSADMIN_FR;
 USE ROLE DNA_ENGINEER_FR;
-USE DATABASE BP_CUSTOMER_DB;
-DROP SCHEMA CUST360;
-
 USE ROLE CPG_SYSADMIN_FR; 
 USE ROLE CPG_ENGINEER_FR;
 USE ROLE BP_SYSADMIN_FR; 
-USE ROLE BP_CUSTOMER_SYSADMIN_FR;
-USE DATABASE BP_CUSTOMER_DB;
-DROP SCHEMA CUST360;
 USE ROLE BP_ENGINEER_FR;
-USE DATABASE BP_CUSTOMER_DB;
-DROP SCHEMA CUST360;
 USE ROLE PNC_SYSADMIN_FR;
 USE ROLE PNC_ENGINEER_FR;
 USE ROLE DNA_ANALYST_FR;
 USE ROLE HR_SYSADMIN_FR; 
 USE ROLE HR_ENGINEER_FR; 
 USE ROLE HR_ANALYST_FR; 
-
-SHOW GRANTS TO ROLE PDE_SYSADMIN_FR;
-SHOW GRANTS ON ROLE PDE_SYSADMIN_FR;
-SHOW GRANTS TO ROLE ADM_SYSADMIN_FR; 
-SHOW GRANTS ON ROLE ADM_SYSADMIN_FR; 
-SHOW GRANTS TO ROLE DNA_SYSADMIN_FR;
-SHOW GRANTS ON ROLE DNA_SYSADMIN_FR;
-SHOW GRANTS TO ROLE DNA_ENGINEER_FR;
-SHOW GRANTS ON ROLE DNA_ENGINEER_FR;
-SHOW GRANTS TO ROLE CPG_SYSADMIN_FR; 
-SHOW GRANTS ON ROLE CPG_SYSADMIN_FR; 
-SHOW GRANTS TO ROLE CPG_ENGINEER_FR;
-SHOW GRANTS ON ROLE CPG_ENGINEER_FR;
-SHOW GRANTS TO ROLE BP_SYSADMIN_FR; 
-SHOW GRANTS ON ROLE BP_SYSADMIN_FR; 
-SHOW GRANTS TO ROLE BP_ENGINEER_FR;
-SHOW GRANTS ON ROLE BP_ENGINEER_FR;
-SHOW GRANTS TO ROLE PNC_SYSADMIN_FR;
-SHOW GRANTS ON ROLE PNC_SYSADMIN_FR;
-SHOW GRANTS TO ROLE PNC_ENGINEER_FR;
-SHOW GRANTS ON ROLE PNC_ENGINEER_FR;
-SHOW GRANTS TO ROLE DNA_ANALYST_FR;
-SHOW GRANTS ON ROLE DNA_ANALYST_FR;
-SHOW GRANTS TO ROLE HR_SYSADMIN_FR; 
-SHOW GRANTS ON ROLE HR_SYSADMIN_FR; 
-SHOW GRANTS TO ROLE HR_ENGINEER_FR; 
-SHOW GRANTS ON ROLE HR_ENGINEER_FR; 
-SHOW GRANTS TO ROLE HR_ANALYST_FR; 
-SHOW GRANTS ON ROLE HR_ANALYST_FR; 
-
-
-
-
-
-
-
-
-
-
 
 
 -- From this website. I just think this is worth reviewing as possible additional Functional Roles!
