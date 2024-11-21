@@ -193,7 +193,7 @@ USE SCHEMA IDENTIFIER($scNm);
 
 
 -- local sysadmin is othe owner of the schema and can create tables and insert data.
-create or replace table cust_address (id numeric);
+create or replace table MY_TEST_TABLE (id numeric);
 
 
 -------------------------------------------------------------
@@ -405,13 +405,13 @@ GRANT ROLE IDENTIFIER($warO) TO ROLE IDENTIFIER($localfrAdmin);
 
 -- -- use each role and run DDL on table.
 -- use role IDENTIFIER($pltfrAdmin);
---     alter table cust_address add column Addr string;
+--     alter table MY_TEST_TABLE add column Addr string;
     
 -- use role IDENTIFIER($localfrAdmin);
---     alter table cust_address rename column Addr to Address;
+--     alter table MY_TEST_TABLE rename column Addr to Address;
     
 -- use role IDENTIFIER($sfrDEVELOPER);
---     alter table cust_address rename column Address to Addr_1;       -- should FAIL with: is not owner, doesn't have access to alter table.
+--     alter table MY_TEST_TABLE rename column Address to Addr_1;       -- should FAIL with: is not owner, doesn't have access to alter table.
 --     -- can create table, is the owner NOTE: DO NOT CREATE OBJECTS WITH THIS ROLE.  ONLY CREATE objects WITH FUNCTIONAL ROLES
 --     --                                      THAT HAVE THIS ROLE GRANTED TO SAID ROLE!
 --     create table cust_city (city string);  

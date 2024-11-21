@@ -101,3 +101,7 @@ SET sfrDEVELOPER =  $dbNm || '_' || $scNm || '_DEVELOPER_FR';           -- DEVEL
 --     , $sfrDEVELOPER as DEVELOPER_FR
 --     ;
 
+---------------------------------------------------------------------------------
+-- build_schema.sql is a generic script that creates any schema:
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/build_schema.sql;
+---------------------------------------------------------------------------------
