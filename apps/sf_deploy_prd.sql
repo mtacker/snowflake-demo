@@ -14,10 +14,10 @@
 
 -- --------------------------------------------------------------------------------------------
 -- -- Approach 1 - Include SET variables WITH the build code  
--- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/tags/tags_build.sql;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/tags/tags_build.sql;
 -- -- Results in error:
 -- -- "Unsupported feature 'session variables not supported during object dependencies backfill"
--- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/alerts/alerts_build.sql;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/alerts/alerts_build.sql;
 -- --------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------------
