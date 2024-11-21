@@ -25,8 +25,8 @@ https://docs.snowflake.com/en/developer-guide/git/git-overview
 ---  
 ## Segregation of Access Using RBAC    
 
-<!-- ![RBAC Model](.images/rbac_diagram.png)   -->
-![RBAC Model](.images/image.png)
+![RBAC Model](.images/rbac_diagram.png)  
+
 ---
 
 ## Proposed Directory Structure 
