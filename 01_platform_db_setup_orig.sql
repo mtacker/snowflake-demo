@@ -4,13 +4,13 @@
 --   -- Desc:
 --   --        This script is run manually to create the following objects:
 --   --
---   --        Admin PLATFORM database ADM_PLATFORM_DB
---   --        ADM_PLATFORM_DB.DEPLOY schema is where the following objects will be created:
+--   --        Admin platform database 
+--   --        .DEPLOY schema is where the following objects will be created:
 --   --        GITHUB_SECRET, GITHUB_API_INTEGRATION & SNOWFLAKE_GIT_REPO
 --   -- 
 --   --        This script also initializes roles and role hierarchies to support
 --   --        our basic RBAC & Security model.
---   --        Also creates ADM_PLATFORM_DB_WH, the warehouse dedicated to ADM_PLATFORM_DB.
+--   --        Also creates _WH, the warehouse dedicated to .
 --   --        
 --   -- Manual Account setup:
 --   --         snow sql -f "./apps/01_manual_account_setup.sql"; 
@@ -25,11 +25,8 @@
 --   --         NOTE> This script is idempotent by the use 'CREATE [object] IF NOT EXISTS'
 --   -- 
 --   YY-MM-DD WHO          CHANGE DESCRIPTION
--------- ------------ -----------------------------------------------------------------
--- 2024-11-19         This is the original version.
---                    Use this if you want CENTRALIZED control of database objects.
---                    Here PDE_SYSADMIN_FR owns the creation of databases and warehouses.
----------------------------------------------------------------------------------------
+--   -------- ------------ -----------------------------------------------------------------
+--------------------------------------------------------------------------------------------
 
 SET beNm = 'ADM';        -- Business Entity / Segment
 SET dbNm = 'PLATFORM';    -- Database Name
@@ -42,12 +39,7 @@ SET databaseNm = $dbNm || '_DB';
 SET schemaNm = $databaseNm || '.' || $scNm;
 SET publicSchemaNm = $databaseNm || '.' || 'public';
 SET pltfrAdmin  = 'PDE_SYSADMIN_FR';  --- Platform sysadmin,  delegated role granted up to SYSADMIN. Create only once.
-
 SET localfrAdmin  =  $dbNm || '_SYSADMIN_FR';
-set pltfrTagAdmin = 'PDE_TAGADMIN_FR';  -- Currently, creation of tags are reserved for PDE_TAGADMIN_FR as a security measure.
-                                        -- However, if we decide to change this just grant PDE_TAGADMIN_FR to another role like this:
-                                        -- USE ROLE USERADMIN;
-                                        -- GRANT ROLE PDE_TAGADMIN_FR TO ROLE MYDATAENGINEERROLE;
 
 -- construct the 3 Access Role SCHEMA LEVEL, for Read, Write & Create
 SET sarR =  $dbNm || '_' || $scNm || '_R_AR';  -- READ access role
@@ -64,7 +56,6 @@ USE ROLE USERADMIN;
 
 -- Create roles 
 CREATE ROLE IF NOT EXISTS IDENTIFIER($pltfrAdmin);
-CREATE ROLE IF NOT EXISTS IDENTIFIER($pltfrTagAdmin);
 CREATE ROLE IF NOT EXISTS IDENTIFIER($localfrAdmin);
 CREATE ROLE IF NOT EXISTS IDENTIFIER($sarR);
 CREATE ROLE IF NOT EXISTS IDENTIFIER($sarW);
@@ -78,7 +69,6 @@ USE ROLE SECURITYADMIN;
 -- to ensure Central Admin has ability to manage the delegated permissions
 GRANT ROLE IDENTIFIER($pltfrAdmin) TO ROLE SYSADMIN;
 GRANT ROLE IDENTIFIER($localfrAdmin) TO ROLE IDENTIFIER($pltfrAdmin);
-GRANT ROLE IDENTIFIER($localfrAdmin) TO ROLE IDENTIFIER($pltfrTagAdmin);
 GRANT ROLE IDENTIFIER($sarC) TO ROLE IDENTIFIER($localfrAdmin);
 GRANT ROLE IDENTIFIER($sarW) TO ROLE IDENTIFIER($sarC); 
 GRANT ROLE IDENTIFIER($sarR) TO ROLE IDENTIFIER($sarW);
@@ -193,11 +183,7 @@ GRANT CREATE ALERT             ON SCHEMA IDENTIFIER($schemaNm)  TO ROLE IDENTIFI
 -- GRANT CREATE TAG               ON SCHEMA IDENTIFIER($schemaNm)  TO ROLE IDENTIFIER($sarC);
 GRANT CREATE MASKING POLICY    ON SCHEMA IDENTIFIER($schemaNm)  TO ROLE IDENTIFIER($sarC);
 GRANT CREATE ROW ACCESS POLICY ON SCHEMA IDENTIFIER($schemaNm)  TO ROLE IDENTIFIER($sarC);
--- PDE_TAGGING_FR IS THE ONLY ROLE IN THE ACCOUNT THAT CAN CREATE TAGS.
--- COULD GRANT TO ANOTHER ROLE IF WE DECIDE TO LIKE THIS:
--- USE ROLE USERADMIN;
--- GRANT ROLE PDE_TAGADMIN_FR TO ROLE MYDATAENGINEER;
-GRANT CREATE TAG ON SCHEMA IDENTIFIER($schemaNm) TO ROLE PDE_TAGADMIN_FR;
+
 
 -- Optional, review grants:
 -- show grants to role IDENTIFIER($sarR);
@@ -287,6 +273,5 @@ GRANT ROLE IDENTIFIER($warO) TO ROLE IDENTIFIER($localfrAdmin);
 ---------------------------------------------------------------
 -- END SCHEMA CREATION. OPTIONAL, CONTINUE TO TESTS BELOW.
 ---------------------------------------------------------------
-
 
 
