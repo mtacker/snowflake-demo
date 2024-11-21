@@ -233,23 +233,19 @@ show grants on role IDENTIFIER($pltfrAdmin);
 
 
 
--------------------------------------------------------------
--- 7. WAREHOUSE GRANTS
--------------------------------------------------------------
--- SET CONTEXT 
--- construct the warehouse name and delegated admin role
-SET prefixNm = $evNm || IFF(($znNm = ''), '', '_' || $znNm) || IFF(($beNm = ''), '', '_' || $beNm);
-SET whNm  = $prefixNm || '_WH';
-SET whComment = '';                     -- comments for warehouse
--- review context
-    select $whNm;
-    
--- construct the 2 Access Role names for Usage and Operate
-SET warU = $whNm || '_WU_AR';  -- Monitor & Usage
-SET warO = $whNm || '_WO_AR';  -- Operate & Modify (so WH can be resized operationally if needed)
+-- -------------------------------------------------------------
+-- -- 7. WAREHOUSE GRANTS
+-- -------------------------------------------------------------
+-- SET whNm  = $databaseNm || '_WH';
+-- SET whComment = 'Warehouse for ' || $databaseNm ;   -- comments for warehouse
 
--- review context
-    select $whNm warehouse_name, $warU Warehouse_role_Usage, $warO Warehouse_role_wu;
+    
+-- -- construct the 2 Access Role names for Usage and Operate
+-- SET warU = $whNm || '_WU_AR';  -- Monitor & Usage
+-- SET warO = $whNm || '_WO_AR';  -- Operate & Modify (so WH can be resized operationally if needed)
+
+-- -- Optional, review context
+--     -- select $whNm warehouse_name, $warU Warehouse_role_Usage, $warO Warehouse_role_wu;
 
 ---------------------------------------------------------------
 -- 3. CREATE Warehouse

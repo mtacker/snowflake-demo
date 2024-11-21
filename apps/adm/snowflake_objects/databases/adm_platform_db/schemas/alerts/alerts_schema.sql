@@ -78,6 +78,18 @@ SET localfrAdmin  =  $dbNm || '_SYSADMIN_FR';
 SET sarR =  $dbNm || '_' || $scNm || '_R_AR';       -- READ access role
 SET sarW =  $dbNm || '_' || $scNm || '_RW_AR';      -- WRITE access role
 SET sarFULL =  $dbNm || '_' || $scNm || '_FULL_AR';    -- FULL access role
+
+-- -------------------------------------------------------------
+-- WAREHOUSE GRANTS
+-- -------------------------------------------------------------
+SET whNm  = $databaseNm || '_WH';
+SET whComment = 'Warehouse for ' || $databaseNm ;   -- comments for warehouse
+
+-- construct the 2 Access Role names for Usage and Operate
+SET warU = $whNm || '_WU_AR';  -- Monitor & Usage
+SET warO = $whNm || '_WO_AR';  -- Operate & Modify (so WH can be resized operationally if needed)
+-- -------------------------------------------------------------
+
 -- functional roles
 SET sfrANALYST =  $dbNm || '_' || $scNm || '_ANALYST_FR';               -- ANALYST Functional Role (FR)
 SET sfrDSCIENCE =  $dbNm || '_' || $scNm || '_DATASCIENCE_FR';          -- DATASCIENCE Functional Role (FR)
