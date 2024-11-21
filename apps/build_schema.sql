@@ -27,13 +27,9 @@
 -------- ------------ -----------------------------------------------------------------
 -- To-Do         
 ---------------------------------------------------------------------------------------
--- Right now all these privileges to PROD as well as the lower environments! This is 
--- not optimal. We would want different (fewer) write privileges in Prod.
--- To-Do: Come up with something like the Stored Proc that Molex uses to differentiate
--- between environments when granting privileges to Functional Roles.
--- Below merely sets up 3 buckets of privileges in 3 generic roles (read/write/create). 
--- These privileges are then rolled up into a hierarchy.
+-- Review privs for building objects in prod
 ---------------------------------------------------------------------------------------
+
 
 ---------------------------------------------------------------
 -- 1. USERADMIN CREATE the account-level maint functional roles

@@ -12,21 +12,27 @@
 
 -- SCHEMAS     
 
--- --------------------------------------------------------------------------------------------
--- -- Approach 1 - Include SET variables WITH the build code  
--- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/tags/tags_build.sql;
--- -- First EXECUTE IMMEDIATE FROM (above) fails with error:
--- -- "Unsupported feature 'session variables not supported during object dependencies backfill"
+--------------------------------------------------------------------------------------------
+-- -- Approach 1 - Include the SET variables WITH the build code:
+--------------------------------------------------------------------------------------------
 -- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/alerts/alerts_build.sql;
--- --------------------------------------------------------------------------------------------
+
+-- -- First 'EXECUTE IMMEDIATE FROM' fails with error:
+--
+-- Uncaught exception of  │
+-- │"Unsupported feature 'session variables not supported during object dependencies backfill"     │
+-- *******************************************************************************
+
+-- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/tags/tags_build.sql;
+--------------------------------------------------------------------------------------------
+
 
 --------------------------------------------------------------------------------------------
--- Approach 2 - Separate SET variables FROM the build code
+-- Approach 2 - Put SET variables in a separate file and call the build code
 --------------------------------------------------------------------------------------------
--- tags_schema.sql SUCCEEDS
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/alerts/alerts_schema.sql;
 
--- alerts_schema.sql FAILS with:
+-- First 'EXECUTE IMMEDIATE FROM' succeeds, but the Second statement fails with error:
 --
 -- Uncaught exception of  │
 -- │ type 'STATEMENT_ERROR' in file                                               │
