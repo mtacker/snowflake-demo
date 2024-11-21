@@ -196,10 +196,11 @@ show grants on role IDENTIFIER($pltfrAdmin);
 
 
 
--------------------------------------------------------------
--- 6. Maintain only necessary objects - DROP public if applicable (optional)
--------------------------------------------------------------
---DROP SCHEMA <database name>.PUBLIC; -- assume this schema isn't needed/wanted so remove
+-- -------------------------------------------------------------
+-- -- 6. Best practice to always drop the PUBLIC schema
+-- -------------------------------------------------------------
+-- USE ROLE IDENTIFIER($pltfrAdmin); -- DATABASE AND SCHEMAS OWNED BY PLATFORM ADMIN!
+-- DROP SCHEMA IF EXISTS IDENTIFIER($localfrAdmin); -- Best practice to always drop the PUBLIC schema
 
 
 

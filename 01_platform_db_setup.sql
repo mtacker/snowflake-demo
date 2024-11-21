@@ -297,7 +297,7 @@ show grants on role IDENTIFIER($pltfrAdmin);
 -------------------------------------------------------------
 -- 6. Best practice to always drop the PUBLIC schema
 -------------------------------------------------------------
-USE ROLE IDENTIFIER($pltfrAdmin); -- DATABASE AND SCHEMAS OWNED BY PLATFORM ADMIN!
+USE ROLE IDENTIFIER($localfrAdmin); -- DATABASE AND SCHEMAS OWNED BY PLATFORM ADMIN!
 DROP SCHEMA IF EXISTS IDENTIFIER($publicSchemaNm); -- Best practice to always drop the PUBLIC schema
 
 
