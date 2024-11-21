@@ -47,8 +47,8 @@ SET scNm = 'EMPLOYEE';
 SET prefixNm = $beNm;
 SET dbNm = $prefixNm || '_' || $dbNm;                                                
 SET databaseNm = $dbNm || '_DB';
-
 SET schemaNm = $databaseNm || '.' || $scNm;
+SET publicSchemaNm = $databaseNm || '.' || 'public';
 SET pltfrAdmin  = 'PLATFORM_SYSADMIN_FR';                                     --- Platform sysadmin,  delegated role granted up to SYSADMIN. Create only once.
 --SET localfrAdmin  = $prefixNm || '_SYSADMIN';                        --- Local sysadmin,  delegated role granted up to Platform sysadmin
 -- SET localfrAdmin  =  $evNm || IFF(($beNm = ''), '', '_' || $beNm) || '_SYSADMIN_FR';
