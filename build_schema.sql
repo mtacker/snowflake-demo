@@ -1,4 +1,3 @@
-
 ---------------------------------------------------------------
 -- 1. USERADMIN: CREATE the account-level maint functional roles
 ---------------------------------------------------------------
@@ -88,7 +87,7 @@ USE SCHEMA IDENTIFIER($scNm);
 
 
 -- local sysadmin is othe owner of the schema and can create tables and insert data.
-create or replace table cust_address (id numeric);
+create or replace table MY_TEST_TABLE (id numeric);
 
 
 -------------------------------------------------------------
@@ -196,31 +195,27 @@ show grants on role IDENTIFIER($pltfrAdmin);
 
 
 
--- -------------------------------------------------------------
--- -- 6. Best practice to always drop the PUBLIC schema
--- -------------------------------------------------------------
--- USE ROLE IDENTIFIER($pltfrAdmin); -- DATABASE AND SCHEMAS OWNED BY PLATFORM ADMIN!
--- DROP SCHEMA IF EXISTS IDENTIFIER($localfrAdmin); -- Best practice to always drop the PUBLIC schema
-
-
-
 -------------------------------------------------------------
--- 7. WAREHOUSE GRANTS
+-- 6. Best practice to always drop the PUBLIC schema
 -------------------------------------------------------------
--- SET CONTEXT 
--- construct the warehouse name and delegated admin role
-SET prefixNm = $evNm || IFF(($znNm = ''), '', '_' || $znNm) || IFF(($beNm = ''), '', '_' || $beNm);
-SET whNm  = $prefixNm || '_WH';
-SET whComment = '';                     -- comments for warehouse
--- review context
-    select $whNm;
+USE ROLE IDENTIFIER($localfrAdmin); -- DATABASE AND SCHEMAS OWNED BY PLATFORM ADMIN!
+DROP SCHEMA IF EXISTS IDENTIFIER($publicSchemaNm); -- Best practice to always drop the PUBLIC schema
+
+
+
+-- -------------------------------------------------------------
+-- -- 7. WAREHOUSE GRANTS
+-- -------------------------------------------------------------
+-- SET whNm  = $databaseNm || '_WH';
+-- SET whComment = 'Warehouse for ' || $databaseNm ;   -- comments for warehouse
+
     
--- construct the 2 Access Role names for Usage and Operate
-SET warU = $whNm || '_WU_AR';  -- Monitor & Usage
-SET warO = $whNm || '_WO_AR';  -- Operate & Modify (so WH can be resized operationally if needed)
+-- -- construct the 2 Access Role names for Usage and Operate
+-- SET warU = $whNm || '_WU_AR';  -- Monitor & Usage
+-- SET warO = $whNm || '_WO_AR';  -- Operate & Modify (so WH can be resized operationally if needed)
 
--- review context
-    select $whNm warehouse_name, $warU Warehouse_role_Usage, $warO Warehouse_role_wu;
+-- -- Optional, review context
+--     -- select $whNm warehouse_name, $warU Warehouse_role_Usage, $warO Warehouse_role_wu;
 
 ---------------------------------------------------------------
 -- 3. CREATE Warehouse
@@ -297,13 +292,13 @@ GRANT ROLE IDENTIFIER($warO) TO ROLE IDENTIFIER($localfrAdmin);
 
 -- -- use each role and run DDL on table.
 -- use role IDENTIFIER($pltfrAdmin);
---     alter table cust_address add column Addr string;
+--     alter table MY_TEST_TABLE add column Addr string;
     
 -- use role IDENTIFIER($localfrAdmin);
---     alter table cust_address rename column Addr to Address;
+--     alter table MY_TEST_TABLE rename column Addr to Address;
     
 -- use role IDENTIFIER($sfrDEVELOPER);
---     alter table cust_address rename column Address to Addr_1;       -- should FAIL with: is not owner, doesn't have access to alter table.
+--     alter table MY_TEST_TABLE rename column Address to Addr_1;       -- should FAIL with: is not owner, doesn't have access to alter table.
 --     -- can create table, is the owner NOTE: DO NOT CREATE OBJECTS WITH THIS ROLE.  ONLY CREATE objects WITH FUNCTIONAL ROLES
 --     --                                      THAT HAVE THIS ROLE GRANTED TO SAID ROLE!
 --     create table cust_city (city string);  
