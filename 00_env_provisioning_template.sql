@@ -36,7 +36,7 @@ SET beNm = 'ADM';           -- Business Entity
 -- SET evNm = 'DEV';               -- Environment Name (Dev | Tst | Prd)
 SET dbNm = 'PLATFORM';          -- Data Product Name
 -- SET znNm = 'RAW';               -- Zone Name (RAW | Integration | Presentation,  Bronze/Silver/Gold, other names such as: EDW | Curated, Enriched)
-SET scNm = 'DEPLOY';
+SET scNm = 'ALERTS';
 
 -- construct the database name and delegated admin role
 -- ORIGINAL -------------------------------------------
@@ -78,29 +78,22 @@ SET localfrAdmin  =  $dbNm || '_SYSADMIN_FR';
 SET sarR =  $dbNm || '_' || $scNm || '_R_AR';       -- READ access role
 SET sarW =  $dbNm || '_' || $scNm || '_RW_AR';      -- WRITE access role
 SET sarFULL =  $dbNm || '_' || $scNm || '_FULL_AR';    -- FULL access role
+
+-- -------------------------------------------------------------
+-- WAREHOUSE GRANTS
+-- -------------------------------------------------------------
+SET whNm  = $databaseNm || '_WH';
+SET whComment = 'Warehouse for ' || $databaseNm ;   -- comments for warehouse
+
+-- construct the 2 Access Role names for Usage and Operate
+SET warU = $whNm || '_WU_AR';  -- Monitor & Usage
+SET warO = $whNm || '_WO_AR';  -- Operate & Modify (so WH can be resized operationally if needed)
+-- -------------------------------------------------------------
+
 -- functional roles
 SET sfrANALYST =  $dbNm || '_' || $scNm || '_ANALYST_FR';               -- ANALYST Functional Role (FR)
 SET sfrDSCIENCE =  $dbNm || '_' || $scNm || '_DATASCIENCE_FR';          -- DATASCIENCE Functional Role (FR)
 SET sfrDEVELOPER =  $dbNm || '_' || $scNm || '_DEVELOPER_FR';           -- DEVELOPER Functional Role (FR)
-
--- Review context
--- Select 
---     $evNm as Environ_name
---     , $beNm as BusinessEntity
---     , $znNm as Zone_name
---     , $databaseNm as Database_name
---     , $scNm as SchemaName
---     , $schemaNm as DB_and_Schema_Name      -- fully qualified
---     , $pltfrAdmin as Platform_Sysadmin_role
---     , $localfrAdmin as local_Sysadmin_role
---     , $sarR as Read_Role
---     , $sarW as Write_Role
---     , $sarFULL as FULL_Role
---     , $sfrANALYST as ANALYST_FR
---     , $sfrDSCIENCE as DATASCIENCE_FR
---     , $sfrDEVELOPER as DEVELOPER_FR
---     ;
-
 
 
 
@@ -302,33 +295,26 @@ show grants on role IDENTIFIER($pltfrAdmin);
 
 
 -------------------------------------------------------------
--- 6. Maintain only necessary objects - DROP public if applicable (optional)
+-- 6. Best practice to always drop the PUBLIC schema
 -------------------------------------------------------------
---DROP SCHEMA <database name>.PUBLIC; -- assume this schema isn't needed/wanted so remove
+USE ROLE IDENTIFIER($pltfrAdmin); -- DATABASE AND SCHEMAS OWNED BY PLATFORM ADMIN!
+DROP SCHEMA IF EXISTS IDENTIFIER($publicSchemaNm); -- Best practice to always drop the PUBLIC schema
 
 
 
--------------------------------------------------------------
--- 7. WAREHOUSE GRANTS
--------------------------------------------------------------
--- SET CONTEXT 
--- construct the warehouse name and delegated admin role
--- ORIG -----------------------------------------------------
--- SET prefixNm = $evNm || IFF(($znNm = ''), '', '_' || $znNm) || IFF(($beNm = ''), '', '_' || $beNm);
--- SET whNm  = $prefixNm || '_WH';
--- SET whComment = '';                     -- comments for warehouse
--- ORIG -----------------------------------------------------
--- review context
-SET whNm  = $databaseNm || '_WH';
-SET whComment = 'Warehouse for ' || $databaseNm ;   -- comments for warehouse
-    select $whNm;
+-- -------------------------------------------------------------
+-- -- 7. WAREHOUSE GRANTS
+-- -------------------------------------------------------------
+-- SET whNm  = $databaseNm || '_WH';
+-- SET whComment = 'Warehouse for ' || $databaseNm ;   -- comments for warehouse
+
     
--- construct the 2 Access Role names for Usage and Operate
-SET warU = $whNm || '_WU_AR';  -- Monitor & Usage
-SET warO = $whNm || '_WO_AR';  -- Operate & Modify (so WH can be resized operationally if needed)
+-- -- construct the 2 Access Role names for Usage and Operate
+-- SET warU = $whNm || '_WU_AR';  -- Monitor & Usage
+-- SET warO = $whNm || '_WO_AR';  -- Operate & Modify (so WH can be resized operationally if needed)
 
--- review context
-    select $whNm warehouse_name, $warU Warehouse_role_Usage, $warO Warehouse_role_wu;
+-- -- Optional, review context
+--     -- select $whNm warehouse_name, $warU Warehouse_role_Usage, $warO Warehouse_role_wu;
 
 ---------------------------------------------------------------
 -- 3. CREATE Warehouse
