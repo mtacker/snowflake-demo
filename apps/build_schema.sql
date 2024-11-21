@@ -208,14 +208,10 @@ show grants on role IDENTIFIER($pltfrAdmin);
 -------------------------------------------------------------
 -- SET CONTEXT 
 -- construct the warehouse name and delegated admin role
--- ORIG -----------------------------------------------------
--- SET prefixNm = $evNm || IFF(($znNm = ''), '', '_' || $znNm) || IFF(($beNm = ''), '', '_' || $beNm);
--- SET whNm  = $prefixNm || '_WH';
--- SET whComment = '';                     -- comments for warehouse
--- ORIG -----------------------------------------------------
+SET prefixNm = $evNm || IFF(($znNm = ''), '', '_' || $znNm) || IFF(($beNm = ''), '', '_' || $beNm);
+SET whNm  = $prefixNm || '_WH';
+SET whComment = '';                     -- comments for warehouse
 -- review context
-SET whNm  = $databaseNm || '_WH';
-SET whComment = 'Warehouse for ' || $databaseNm ;   -- comments for warehouse
     select $whNm;
     
 -- construct the 2 Access Role names for Usage and Operate
@@ -273,85 +269,85 @@ GRANT ROLE IDENTIFIER($warU) TO ROLE IDENTIFIER($sfrDEVELOPER);
 GRANT ROLE IDENTIFIER($warO) TO ROLE IDENTIFIER($localfrAdmin);
 
 
----------------------------------------------------------------
--- 100. TEST
----------------------------------------------------------------
---          Grant all three roles to your user.  Review what is visible.
-grant role IDENTIFIER($pltfrAdmin) to user <your username>;
-grant role IDENTIFIER($localfrAdmin) to user <your username>;
-grant role IDENTIFIER($sfrANALYST) to user <your username>;
-grant role IDENTIFIER($sfrDSCIENCE) to user <your username>;
-grant role IDENTIFIER($sfrDEVELOPER) to user <your username>;
+-- ---------------------------------------------------------------
+-- -- 100. TEST
+-- ---------------------------------------------------------------
+-- --          Grant all three roles to your user.  Review what is visible.
+-- grant role IDENTIFIER($pltfrAdmin) to user <your username>;
+-- grant role IDENTIFIER($localfrAdmin) to user <your username>;
+-- grant role IDENTIFIER($sfrANALYST) to user <your username>;
+-- grant role IDENTIFIER($sfrDSCIENCE) to user <your username>;
+-- grant role IDENTIFIER($sfrDEVELOPER) to user <your username>;
 
-grant role IDENTIFIER($pltfrAdmin) to user yramage;
-grant role IDENTIFIER($localfrAdmin) to user yramage;
-grant role IDENTIFIER($sfrANALYST) to user yramage;
-grant role IDENTIFIER($sfrDSCIENCE) to user yramage;
-grant role IDENTIFIER($sfrDEVELOPER) to user yramage;
+-- grant role IDENTIFIER($pltfrAdmin) to user yramage;
+-- grant role IDENTIFIER($localfrAdmin) to user yramage;
+-- grant role IDENTIFIER($sfrANALYST) to user yramage;
+-- grant role IDENTIFIER($sfrDSCIENCE) to user yramage;
+-- grant role IDENTIFIER($sfrDEVELOPER) to user yramage;
 
 
--- use each role and notice what you can see in the database explorer.
-use role IDENTIFIER($pltfrAdmin);
-use role IDENTIFIER($localfrAdmin);
-use role IDENTIFIER($sfrANALYST);
-use role IDENTIFIER($sfrDSCIENCE);
-use role IDENTIFIER($sfrDEVELOPER);
-use role sysadmin;
+-- -- use each role and notice what you can see in the database explorer.
+-- use role IDENTIFIER($pltfrAdmin);
+-- use role IDENTIFIER($localfrAdmin);
+-- use role IDENTIFIER($sfrANALYST);
+-- use role IDENTIFIER($sfrDSCIENCE);
+-- use role IDENTIFIER($sfrDEVELOPER);
+-- use role sysadmin;
 
--- use each role and run DDL on table.
-use role IDENTIFIER($pltfrAdmin);
-    alter table cust_address add column Addr string;
+-- -- use each role and run DDL on table.
+-- use role IDENTIFIER($pltfrAdmin);
+--     alter table cust_address add column Addr string;
     
-use role IDENTIFIER($localfrAdmin);
-    alter table cust_address rename column Addr to Address;
+-- use role IDENTIFIER($localfrAdmin);
+--     alter table cust_address rename column Addr to Address;
     
-use role IDENTIFIER($sfrDEVELOPER);
-    alter table cust_address rename column Address to Addr_1;       -- should FAIL with: is not owner, doesn't have access to alter table.
-    -- can create table, is the owner NOTE: DO NOT CREATE OBJECTS WITH THIS ROLE.  ONLY CREATE objects WITH FUNCTIONAL ROLES
-    --                                      THAT HAVE THIS ROLE GRANTED TO SAID ROLE!
-    create table cust_city (city string);  
-    alter table cust_city set comment ='Testing if owner can alter their own tables';
-    insert into cust_city values ('chicago');     -- works, as full role inherits R-> W -> FULL
+-- use role IDENTIFIER($sfrDEVELOPER);
+--     alter table cust_address rename column Address to Addr_1;       -- should FAIL with: is not owner, doesn't have access to alter table.
+--     -- can create table, is the owner NOTE: DO NOT CREATE OBJECTS WITH THIS ROLE.  ONLY CREATE objects WITH FUNCTIONAL ROLES
+--     --                                      THAT HAVE THIS ROLE GRANTED TO SAID ROLE!
+--     create table cust_city (city string);  
+--     alter table cust_city set comment ='Testing if owner can alter their own tables';
+--     insert into cust_city values ('chicago');     -- works, as full role inherits R-> W -> FULL
     
-use role IDENTIFIER($localfrAdmin);
-    alter table cust_city add column state string;  -- works
-    select * from cust_city;
-    describe table cust_city;
-    select get_ddl('table', 'cust_city');
-    update cust_city set state = 'IL' where city ='chicago';
+-- use role IDENTIFIER($localfrAdmin);
+--     alter table cust_city add column state string;  -- works
+--     select * from cust_city;
+--     describe table cust_city;
+--     select get_ddl('table', 'cust_city');
+--     update cust_city set state = 'IL' where city ='chicago';
 
-use role IDENTIFIER($sfrDSCIENCE);
-     insert into cust_city values ('Dallas', 'TX'); 
-     update cust_city set city = 'Springfield' where state = 'IL';
-     select * from cust_city;
+-- use role IDENTIFIER($sfrDSCIENCE);
+--      insert into cust_city values ('Dallas', 'TX'); 
+--      update cust_city set city = 'Springfield' where state = 'IL';
+--      select * from cust_city;
      
-use role IDENTIFIER($sfrANALYST);
-     select * from cust_city;
-     update cust_city set state = 'IL' where city ='Springfield';       -- fails, insufficient privileges
+-- use role IDENTIFIER($sfrANALYST);
+--      select * from cust_city;
+--      update cust_city set state = 'IL' where city ='Springfield';       -- fails, insufficient privileges
 
--- IN REVIEW:  review all that was created
-use role IDENTIFIER($pltfrAdmin);
-show databases;                 -- review the OWNER of database as platform sysadmin (delegated admin for full platform, all databases)
-show schemas;                   -- review the OWNER of schema as local sysadmin (delegated admin for database only)
-show roles;                     -- review the roles created (functional roles and access roles)
+-- -- IN REVIEW:  review all that was created
+-- use role IDENTIFIER($pltfrAdmin);
+-- show databases;                 -- review the OWNER of database as platform sysadmin (delegated admin for full platform, all databases)
+-- show schemas;                   -- review the OWNER of schema as local sysadmin (delegated admin for database only)
+-- show roles;                     -- review the roles created (functional roles and access roles)
 
 
---- clean up script 
-/*
-use role securityadmin;
-DROP ROLE if exists IDENTIFIER($localfrAdmin);
-DROP ROLE if exists IDENTIFIER($pltfrAdmin);
-DROP ROLE if exists IDENTIFIER($sfrANALYST);
-DROP ROLE if exists IDENTIFIER($sfrDSCIENCE);
-DROP ROLE if exists IDENTIFIER($sfrDEVELOPER);
-DROP ROLE if exists IDENTIFIER($sarR);
-DROP ROLE if exists IDENTIFIER($sarW);
-DROP ROLE if exists IDENTIFIER($sarFULL);
-DROP ROLE if exists IDENTIFIER($warO);
-DROP ROLE if exists IDENTIFIER($warU);
---
-use role accountadmin;
-drop database IDENTIFIER($databaseNm);
-drop warehouse IDENTIFIER($whNm);
-*/
+-- --- clean up script 
+-- /*
+-- use role securityadmin;
+-- DROP ROLE if exists IDENTIFIER($localfrAdmin);
+-- DROP ROLE if exists IDENTIFIER($pltfrAdmin);
+-- DROP ROLE if exists IDENTIFIER($sfrANALYST);
+-- DROP ROLE if exists IDENTIFIER($sfrDSCIENCE);
+-- DROP ROLE if exists IDENTIFIER($sfrDEVELOPER);
+-- DROP ROLE if exists IDENTIFIER($sarR);
+-- DROP ROLE if exists IDENTIFIER($sarW);
+-- DROP ROLE if exists IDENTIFIER($sarFULL);
+-- DROP ROLE if exists IDENTIFIER($warO);
+-- DROP ROLE if exists IDENTIFIER($warU);
+-- --
+-- use role accountadmin;
+-- drop database IDENTIFIER($databaseNm);
+-- drop warehouse IDENTIFIER($whNm);
+-- */
 
