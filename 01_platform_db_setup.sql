@@ -25,8 +25,11 @@
 --   --         NOTE> This script is idempotent by the use 'CREATE [object] IF NOT EXISTS'
 --   -- 
 --   YY-MM-DD WHO          CHANGE DESCRIPTION
---   -------- ------------ -----------------------------------------------------------------
---------------------------------------------------------------------------------------------
+-------- ------------ -----------------------------------------------------------------
+-- 2024-11-19         This is the original version.
+--                    Use this if you want CENTRALIZED control of database objects.
+--                    Here PDE_SYSADMIN_FR owns the creation of databases and warehouses.
+---------------------------------------------------------------------------------------
 
 SET beNm = 'ADM';        -- Business Entity / Segment
 SET dbNm = 'PLATFORM';    -- Database Name
