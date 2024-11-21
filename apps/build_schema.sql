@@ -77,14 +77,14 @@ GRANT ROLE IDENTIFIER($sarFULL) TO ROLE IDENTIFIER($sfrDEVELOPER);
 -------------------------------------------------------------
 -- To manage functional role assignment outside of snowflake (3rd party tool: Sailpoint, Azure AD, etc)
 -- it may require tranfering the ownership of functional roles to SCIM PROVISIONER role  (SailPoint, Azure AD, etc)
-
--- set scimRl = '';    -- name of role used in SCIM provisioning
--- GRANT OWNERSHIP ON ROLE IDENTIFIER($pltfrAdmin)  TO ROLE IDENTIFIER($scimRl) COPY CURRENT GRANTS;
--- GRANT OWNERSHIP ON ROLE IDENTIFIER($localfrAdmin)  TO ROLE IDENTIFIER($scimRl) COPY CURRENT GRANTS;
--- GRANT OWNERSHIP ON ROLE IDENTIFIER($sfrANALYST) TO ROLE IDENTIFIER($scimRl) COPY CURRENT GRANTS;
--- GRANT OWNERSHIP ON ROLE IDENTIFIER($sfrDSCIENCE) TO ROLE IDENTIFIER($scimRl) COPY CURRENT GRANTS;
--- GRANT OWNERSHIP ON ROLE IDENTIFIER($sfrDEVELOPER) TO ROLE IDENTIFIER($scimRl) COPY CURRENT GRANTS;
-
+/*
+set scimRl = '';    -- name of role used in SCIM provisioning
+GRANT OWNERSHIP ON ROLE IDENTIFIER($pltfrAdmin)  TO ROLE IDENTIFIER($scimRl) COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE IDENTIFIER($localfrAdmin)  TO ROLE IDENTIFIER($scimRl) COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE IDENTIFIER($sfrANALYST) TO ROLE IDENTIFIER($scimRl) COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE IDENTIFIER($sfrDSCIENCE) TO ROLE IDENTIFIER($scimRl) COPY CURRENT GRANTS;
+GRANT OWNERSHIP ON ROLE IDENTIFIER($sfrDEVELOPER) TO ROLE IDENTIFIER($scimRl) COPY CURRENT GRANTS;
+*/
 
 show roles;
 
@@ -229,7 +229,7 @@ show grants on role IDENTIFIER($pltfrAdmin);
 -------------------------------------------------------------
 -- 6. Best practice to always drop the PUBLIC schema
 -------------------------------------------------------------
-USE ROLE IDENTIFIER($pltfrAdmin); -- DATABASE AND SCHEMAS OWNED BY PLATFORM ADMIN!
+USE ROLE ACCOUNTADMIN; 
 DROP SCHEMA IF EXISTS IDENTIFIER($publicSchemaNm); -- Best practice to always drop the PUBLIC schema
 
 
