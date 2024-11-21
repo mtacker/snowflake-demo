@@ -15,7 +15,7 @@
 --------------------------------------------------------------------------------------------
 -- -- Approach 1 - Include the SET variables WITH the build code:
 --------------------------------------------------------------------------------------------
-EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/alerts/alerts_build.sql;
+-- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/alerts/alerts_build.sql;
 
 -- -- First 'EXECUTE IMMEDIATE FROM' fails with error:
 --
@@ -23,14 +23,14 @@ EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_ob
 -- │"Unsupported feature 'session variables not supported during object dependencies backfill"     │
 -- *******************************************************************************
 
-EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/tags/tags_build.sql;
+-- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/tags/tags_build.sql;
 --------------------------------------------------------------------------------------------
 
 
 --------------------------------------------------------------------------------------------
 -- Approach 2 - Put SET variables in a separate file and call the build code
 --------------------------------------------------------------------------------------------
--- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/alerts/alerts_schema.sql;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/alerts/alerts_schema.sql;
 
 -- First 'EXECUTE IMMEDIATE FROM' succeeds, but the Second statement fails with error:
 --
@@ -41,7 +41,7 @@ EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_ob
 -- │ Cannot perform operation. This session does not have a current database.     │
 -- │ Call 'USE DATABASE', or use a qualified name.   
 -- *******************************************************************************
--- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/tags/tags_schema.sql;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/adm/snowflake_objects/databases/adm_platform_db/schemas/tags/tags_schema.sql;
 --------------------------------------------------------------------------------------------
 
 -- SCHEMAS  
