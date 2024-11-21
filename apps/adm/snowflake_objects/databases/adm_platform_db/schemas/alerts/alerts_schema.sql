@@ -51,7 +51,8 @@ SET databaseNm = $dbNm || '_DB';
 SET schemaNm = $databaseNm || '.' || $scNm;
 SET pltfrAdmin  = 'PLATFORM_SYSADMIN_FR';                                     --- Platform sysadmin,  delegated role granted up to SYSADMIN. Create only once.
 --SET localfrAdmin  = $prefixNm || '_SYSADMIN';                        --- Local sysadmin,  delegated role granted up to Platform sysadmin
-SET localfrAdmin  =  $evNm || IFF(($beNm = ''), '', '_' || $beNm) || '_SYSADMIN_FR';
+-- SET localfrAdmin  =  $evNm || IFF(($beNm = ''), '', '_' || $beNm) || '_SYSADMIN_FR';
+SET localfrAdmin  =  $dbNm || '_SYSADMIN_FR';
 
 /* ----- Account RBAC Heirarchy -------------------------
     -- Note: the below script includes account-level roles, and may be modified to include database roles.
