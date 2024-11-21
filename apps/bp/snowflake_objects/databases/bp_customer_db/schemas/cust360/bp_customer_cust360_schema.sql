@@ -1,86 +1,119 @@
----------------------------------------------------------------------------------------------
---  SCRIPT:    Initial Environment Creation Script
+/****************************************************************************************\
+ SCRIPT:    Environment Creation Script
 
---   -- Desc:
---   --        This script is run manually to create the following objects:
---   --
---   --        Admin platform database 
---   --        .DEPLOY schema is where the following objects will be created:
---   --        GITHUB_SECRET, GITHUB_API_INTEGRATION & SNOWFLAKE_GIT_REPO
---   --        This script also initializes roles and role hierarchies to support
---   --        our basic RBAC & Security model.
---   --        Also creates _WH, the warehouse dedicated to .
---   --        
---   -- Execution Options:
---   --         snow sql -f "./apps/01_manual_account_setup.sql"; 
---   --         snow sql -f "./apps/02_git_integration.sql";
---   --         Above requires Snowflake CLI to be installed locally first. See:
---   --         04_snowflake_cli_setup.md on how to do that.
---   --
---   -- Or you can simply:
---   --         Copy/Paste THIS ENTIRE script into a Worksheet in a Snowflake Trial Account 
---   --         and run manually! No other setups required.
---   -- 
---   --         NOTE> This script is intended to be idempotent with the use 
---   --         of 'CREATE [object] IF NOT EXISTS' statments.
---   -- 
---   YY-MM-DD WHO          CHANGE DESCRIPTION
---   -------- ------------ -----------------------------------------------------------------
+  -- Desc:  generic script showing how to manually maintain privileges to access roles
+  --        Below script sets context for naming convention
+  --        Creates platform administration roles (platform admin, local admin)
+  --        Creates database
+  --        creates schema
+  --        creates roles (access roles)
+  --        creates role heirarchy (access roles)
+  --        creates 3 functional roles (analyst, datascience, developer as examples)
+  --        assigns access roles to functional roles
+  --        grants access to roles (read, read/write, full/create)
+  --        creates warehouses
+  --        creates warehouse access roles
+  --        grants roles for warehouse to access roles
 
----------------------------------------------------------------------------------------------
-SET beNm = 'bp';        -- Business Entity / Segment
-SET dbNm = 'customer';    -- Database Name
-SET scNm = 'cust360';     -- Schema Name
+  --        CLEAN UP scripts
+
+  -- 
+  -- Note:  The below scripts are account-level roles and can be modified to include 
+  --        database roles where appropriate
+
+  
+  YY-MM-DD WHO          CHANGE DESCRIPTION
+  -------- ------------ -----------------------------------------------------------------
+  -- 24-08-15           Yvonne Ramage, create script
+  -- 24-10-30           Yvonnw Ramage, added functional roles
+  -- 24-11-16           Y Ramage, changed name of FULL role (sarFULL), replaced sarC
+\****************************************************************************************/
+
+---------------------------------------------------------------
+-- 0. INPUT the components of the names and other parameters
+---------------------------------------------------------------
+SET beNm = 'BP';           -- Business Entity
+-- SET evNm = 'DEV';               -- Environment Name (Dev | Tst | Prd)
+SET dbNm = 'CUSTOMER';          -- Data Product Name
+-- SET znNm = 'RAW';               -- Zone Name (RAW | Integration | Presentation,  Bronze/Silver/Gold, other names such as: EDW | Curated, Enriched)
+SET scNm = 'CUST360';
 
 -- construct the database name and delegated admin role
+-- ORIGINAL -------------------------------------------
+-- SET prefixNm = $evNm || IFF(($znNm = ''), '', '_' || $znNm) || IFF(($beNm = ''), '', '_' || $beNm);
+-- SET dbNm = $prefixNm;                                                --  If Domain defined at account level, append:  || IFF(($dbNm = ''), '', '_' || $dbNm ); 
+-- SET databaseNm = $dbNm || '_DB';
+-- ORIGINAL -------------------------------------------
 SET prefixNm = $beNm;
 SET dbNm = $prefixNm || '_' || $dbNm;                                                
 SET databaseNm = $dbNm || '_DB';
-SET schemaNm = $databaseNm || '.' || $scNm;
-SET publicSchemaNm = $databaseNm || '.' || 'public';
-SET pltfrAdmin  = 'PDE_SYSADMIN_FR';  --- Platform sysadmin,  delegated role granted up to SYSADMIN. Create only once.
 
+SET schemaNm = $databaseNm || '.' || $scNm;
+SET pltfrAdmin  = 'PLATFORM_SYSADMIN_FR';                                     --- Platform sysadmin,  delegated role granted up to SYSADMIN. Create only once.
+--SET localfrAdmin  = $prefixNm || '_SYSADMIN';                        --- Local sysadmin,  delegated role granted up to Platform sysadmin
+-- SET localfrAdmin  =  $evNm || IFF(($beNm = ''), '', '_' || $beNm) || '_SYSADMIN_FR';
 SET localfrAdmin  =  $dbNm || '_SYSADMIN_FR';
 
--- construct the 3 Access Role SCHEMA LEVEL, for Read, Write & Create
-SET sarR =  $dbNm || '_' || $scNm || '_R_AR';  -- READ access role
-SET sarW =  $dbNm || '_' || $scNm || '_RW_AR';  -- WRITE access role
-SET sarC =  $dbNm || '_' || $scNm || '_FULL_AR';  -- CREATE or FULL access role
+/* ----- Account RBAC Heirarchy -------------------------
+    -- Note: the below script includes account-level roles, and may be modified to include database roles.
 
+    ACCOUNTADMIN
+        SECURITYADMIN
+        SYSADMIN
+            PLATFORM_SYSADMIN   (grants, create tasks, notifications, create database, create schema,  access/grants to a GOVERNANCE DB, PLATFORM_DB - contain the account_usage views persisted locally, 
+                                    write reporting, governance reporting, platform management, replication management, fail-over DR,  )
+                LOCAL_SYSADMIN   (create tags in database only, manage users, manage grants create local tags, apply policies,  DATABASE LEVEL)
+                    DEVELOPER_FR
+                    ANALYST_FR
+                    --- grant the following access roles as per the least-access privs up to the Functional Roles
+                    FULL_AR
+                        WR_AR
+                            R_AR
+
+
+ */
+
+-- construct the 3 Access Role SCHEMA LEVEL, for Read, Write & Create
+-- construct the 2 Functional Roles SCHEMA LEVEL, sample: analyst and developer
+SET sarR =  $dbNm || '_' || $scNm || '_R_AR';       -- READ access role
+SET sarW =  $dbNm || '_' || $scNm || '_RW_AR';      -- WRITE access role
+SET sarFULL =  $dbNm || '_' || $scNm || '_FULL_AR';    -- FULL access role
+
+-- -------------------------------------------------------------
+-- WAREHOUSE GRANTS
+-- -------------------------------------------------------------
 SET whNm  = $databaseNm || '_WH';
 SET whComment = 'Warehouse for ' || $databaseNm ;   -- comments for warehouse
 
-    
 -- construct the 2 Access Role names for Usage and Operate
 SET warU = $whNm || '_WU_AR';  -- Monitor & Usage
 SET warO = $whNm || '_WO_AR';  -- Operate & Modify (so WH can be resized operationally if needed)
+-- -------------------------------------------------------------
 
+-- functional roles
+SET sfrANALYST =  $dbNm || '_' || $scNm || '_ANALYST_FR';               -- ANALYST Functional Role (FR)
+SET sfrDSCIENCE =  $dbNm || '_' || $scNm || '_DATASCIENCE_FR';          -- DATASCIENCE Functional Role (FR)
+SET sfrDEVELOPER =  $dbNm || '_' || $scNm || '_DEVELOPER_FR';           -- DEVELOPER Functional Role (FR)
+
+-- Review context
+-- Select 
+--     $evNm as Environ_name
+--     , $beNm as BusinessEntity
+--     , $znNm as Zone_name
+--     , $databaseNm as Database_name
+--     , $scNm as SchemaName
+--     , $schemaNm as DB_and_Schema_Name      -- fully qualified
+--     , $pltfrAdmin as Platform_Sysadmin_role
+--     , $localfrAdmin as local_Sysadmin_role
+--     , $sarR as Read_Role
+--     , $sarW as Write_Role
+--     , $sarFULL as FULL_Role
+--     , $sfrANALYST as ANALYST_FR
+--     , $sfrDSCIENCE as DATASCIENCE_FR
+--     , $sfrDEVELOPER as DEVELOPER_FR
+--     ;
 
 ---------------------------------------------------------------------------------
--- build_schema.sql is a generic script to create any schema:
+-- build_schema.sql is a generic script that creates any schema:
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/build_schema.sql;
 ---------------------------------------------------------------------------------
-
----------------------------------------------------------------
--- END SCHEMA CREATION. OPTIONAL, CONTINUE TO TESTS BELOW.
----------------------------------------------------------------
-
-
-
----------------------------------------------------------------
--- 100. TEST
----------------------------------------------------------------
--- Grant all three roles to your user.  Review what is visible.
--- grant role IDENTIFIER($pltfrAdmin) to user <your username>;
--- grant role IDENTIFIER($localfrAdmin) to user <your username>;
--- grant role IDENTIFIER($sarR) to user <your username>;
--- grant role IDENTIFIER($sarW) to user <your username>;
--- grant role IDENTIFIER($sarC) to user <your username>;
-
--- Uncomment, and use each role and notice what you can see in the database explorer:
--- use role IDENTIFIER($pltfrAdmin);
--- use role IDENTIFIER($localfrAdmin);
--- use role IDENTIFIER($sarC);
--- use role IDENTIFIER($sarW);
--- use role IDENTIFIER($sarR);
--- use role sysadmin;
