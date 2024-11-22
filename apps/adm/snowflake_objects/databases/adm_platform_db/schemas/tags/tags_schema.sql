@@ -47,5 +47,5 @@ SET warO = $whNm || '_WO_AR';  -- Operate & Modify (so WH can be resized operati
 
 ---------------------------------------------------------------------------------
 -- build_schema.sql is a generic script to create any schema:
-EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/build_schema_tags.sql;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/build_schema.sql;
 ---------------------------------------------------------------------------------
