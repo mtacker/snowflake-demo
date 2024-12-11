@@ -28,11 +28,6 @@ VS Code Can Should now be able to connect directly to your Snowflake accounts:
 ```
 brew install gh 
 ```
-- Create a ```.env``` file for ease of updating Github secrets:  
-```
-touch .env
-```
-Add ```.env``` to gitignore file!
 
 ## Create a database for integration with Github 
 
@@ -44,9 +39,13 @@ This *repository stage* requires us to "prime the pump" by already having an adm
 
 Your Snowflake account should now have a new database and compute warehouse called ADM_PLATFORM_DB and ADM_PLATFORM_DB_WH respectively.
 
-## Add account secrets to your .env file
+## Create .env file for ease of updating Github secrets
+```
+touch .env
+```
+Add ```.env``` to gitignore!  
 
-Your .env should look like this, with ```SNOWFLAKE_CONNECTIONS_ACCOUNT_[DEV/QA/PRD]``` being each ```account_locator.cloud_region```:  
+Add parameter values with ```SNOWFLAKE_CONNECTIONS_ACCOUNT_[DEV/QA/PRD]``` being each ```account_locator.cloud_region```:  
 
 SNOWFLAKE_CONNECTIONS_ACCOUNT_DEV = csb*****.us-east-1   
 SNOWFLAKE_CONNECTIONS_ACCOUNT_QA = frb*****.us-east-1  
@@ -60,8 +59,8 @@ SNOWFLAKE_CONNECTIONS_SCHEMA = DEPLOY_SCHEMA
 
 ## Github setups  
 - Create a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens)  
-Your personal access toke will be needed for the next step
-### Run ```gh``` to write secrets to your repository 
+Your personal access token will be needed for the next step
+- Run ```gh``` to write secrets to your repository  
 ```
 gh secret set -f - < .env
 ```
