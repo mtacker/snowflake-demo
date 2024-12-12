@@ -21,15 +21,14 @@ This is the [deployment model](https://docs.snowflake.com/en/developer-guide/git
 
 - Create three [30 day trial accounts](https://signup.snowflake.com/) (DEV/QA/PRD).[^3]   
 
-- Find your Snowflake Account Identifiers (```account_locator.cloud_region```) and save them later     
+- Once created, find your Snowflake Account Identifiers (```account_locator.cloud_region```) and save them for later.     
 
 From the Snowflake console:  
-
 <img src="./.images/account_url.png" alt="Alt Text" style="width:35%; height:auto;">
 
 Snowflake account URL's are in the form:  
 https://```account_locator.cloud_region```.snowflakecomputing.com  
-- Set your Account Identifiers aside for use later.  
+
 
 ## Step 2: Laptop configurations
 - Install the [Snowflake CLI](01_snowflake_cli_setup.md)
