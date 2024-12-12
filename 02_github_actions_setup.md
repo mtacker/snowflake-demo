@@ -24,7 +24,7 @@ This is the [deployment model](https://docs.snowflake.com/en/developer-guide/git
 - Once created, find your Snowflake Account Identifiers (```account_locator.cloud_region```) and save them for later.     
 
 From the Snowflake console:  
-<img src="./.images/account_url.png" alt="Alt Text" style="width:35%; height:auto;">
+<img src="./.images/account_url.png" alt="Alt Text" style="width:45%; height:auto;">
 
 Snowflake account URL's are in the form:  
 https://```account_locator.cloud_region```.snowflakecomputing.com  
