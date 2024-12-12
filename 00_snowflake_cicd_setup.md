@@ -48,7 +48,7 @@ brew install gh
 ## Step 3: Create Snowflake database for integration with Github 
 Note> Run this script against each Snowflake accounts [^4] 
 
-- Using VS Code or a Snowflake worksheet [run this code](00_buiild_platform_db.sql) in each Snowflake account. 
+- Using VS Code or a Snowflake worksheet [run this code](02_build_platform_db.sql) in each Snowflake account. 
 - Each Snowflake account should now have a database and compute warehouse called ADM_PLATFORM_DB and ADM_PLATFORM_DB_WH, respectively.
 
 ## Step 4: Remote github repository setups  
