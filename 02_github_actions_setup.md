@@ -19,8 +19,7 @@ This is the [deployment model](https://docs.snowflake.com/en/developer-guide/git
 
 ## Step 1: Create Snowflake trial accounts
 
-- Create Snowflake .  
- [Create three 30 day accounts](https://signup.snowflake.com/)(DEV/QA/PRD). Credit card is not required.  
+- [Create three 30 day accounts](https://signup.snowflake.com/)(DEV/QA/PRD). Credit card is not required.  
 Note> Your email address can be reused and a corporate address is not required.  
 
 - Find your Snowflake Account Identifiers (```account_locator.cloud_region```) and save them later     
