@@ -3,7 +3,7 @@
 
 After completing these steps you will be able to deploy DDL and DML changes direct to multiple Snowflake accounts based upon the branch (DEV/QA/PRD) you commit to.
 
-- Deep-dive video covering this deployment approach[^1]  
+- Deep-dive video covering this deployment model[^1]  
 - Snowflake/git integration detailed view[^2]  
 
 This is the model we are building to:  
@@ -110,8 +110,8 @@ Verify your secrets were added to the repository:
 <img src="./.images/main.yml.png" alt="Alt Text" style="width:50%; height:auto;">
 
 
-[^1]: This is a deployment model is based on Snowflake's most recent recommended approach:  
-See [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=k20yLpW8-xU).  
+[^1]: This is a deployment model is based on Snowflake's most recent recommended approach.   
+See video [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=k20yLpW8-xU).  
 
 [^2]: See Snowflake's [git overview](https://docs.snowflake.com/en/developer-guide/git/git-overview) for more details.  
 
