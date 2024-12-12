@@ -16,8 +16,8 @@ snow --help;
 
 -  your connections.toml should have entries from Step 1 like this:  
 [click on this link](#my-multi-word-header)
-[run this code]00_snowflake_cicd_setup.md## Step 1: Create Snowflake trial accounts) 
-
+[run this code](00_snowflake_cicd_setup.md##-Step-1:-Create-Snowflake-trial-accounts) 
+[sub-section](./child.md#sub-section) 
 
 ```
 [DEV]
