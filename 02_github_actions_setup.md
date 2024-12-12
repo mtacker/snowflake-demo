@@ -52,13 +52,13 @@ This *repository stage* requires us to "prime the pump" by already having an adm
 - Using VS Code or a Snowflake worksheet [run this code](00_buiild_platform_db.sql) in each Snowflake account. [^5]
 - Ensure that each Snowflake account now has a database and compute warehouse called ADM_PLATFORM_DB and ADM_PLATFORM_DB_WH, respectively.
 
-## Step 4: Create ```.env``` file for ease of updating Github secrets
+## Step 4: Build an environment file for ease of updating Github secrets
 ```
 touch .env
 ```
 Add ```.env``` to gitignore!  
 
-Add parameter values with ```SNOWFLAKE_CONNECTIONS_ACCOUNT_[DEV/QA/PRD]``` being each ```account_locator.cloud_region```:  
+Update parameters below and add to .env file including each ```account_locator.cloud_region```:  
 ~~~~
 SNOWFLAKE_CONNECTIONS_ACCOUNT_DEV = csb*****.us-east-1   
 SNOWFLAKE_CONNECTIONS_ACCOUNT_QA = frb*****.us-east-1  
