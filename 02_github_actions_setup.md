@@ -12,16 +12,16 @@ This is the [deployment model](https://docs.snowflake.com/en/developer-guide/git
 ## Summary of Steps:
 - Create Snowflake Trial Accounts (DEV/QA/PRD)  
 - Laptop configurations (VS Code, Snowflake CLI, Git CLI for managing secrets)
-- SQL script to build account roles, deployment database and compute warehouse    
+- Run SQL script to build account roles, deployment database and compute warehouse    
 - Configure an environment file for ease of secrets management  
 - Github setups (create a personal access token and add secrets)
-- SQL script to connect Snowflake to your remote git repo
+- Run SQL script to connect Snowflake to your remote git repo
 
 ## Step 1: Create Snowflake trial accounts
 
-- Snowflake Trial account [setup](https://signup.snowflake.com/).  
-Create three 30 day accounts (DEV/QA/PRD). Credit card is not required.  
-Note> You CAN reuse your email and Snowflake does NOT have to be a corporate address.  
+- Create Snowflake .  
+ [Create three 30 day accounts](https://signup.snowflake.com/)(DEV/QA/PRD). Credit card is not required.  
+Note> Your email address can be reused and a corporate address is not required.  
 
 - Find your Snowflake Account Identifiers (```account_locator.cloud_region```) and save them later     
 
