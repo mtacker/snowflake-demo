@@ -1,4 +1,4 @@
-# Enabling CI/CD changes to Snowflake using Github Actions
+# Enabling CI/CD deployments to Snowflake using Github Actions
 
 After completing these steps you will be able to deploy DDL and DML changes direct to multiple Snowflake accounts based upon the commits to each branch. Commits to "DEV" branch will push changes to your "DEV" account (and QA/PRD respectively).  
 
