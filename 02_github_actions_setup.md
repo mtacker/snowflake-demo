@@ -46,13 +46,13 @@ brew install gh
 ```
 
 ## Step 3: Create Snowflake database for integration with Github 
-Note> Perform this step agains all Snowflake accounts [^4] 
+Note> Run this script against each Snowflake accounts [^4] 
 
 - Using VS Code or a Snowflake worksheet [run this code](00_buiild_platform_db.sql) in each Snowflake account. 
-- Ensure that each Snowflake account now has a database and compute warehouse called ADM_PLATFORM_DB and ADM_PLATFORM_DB_WH, respectively.
+- Each Snowflake account should now have a database and compute warehouse called ADM_PLATFORM_DB and ADM_PLATFORM_DB_WH, respectively.
 
 ## Step 4: Remote github repository setups  
-- Create a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens)  
+- Create a [Fine-grained Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens).     
 
 ## Step 5: Configure Snowflake accounts to connect to Github
 Requires Personal Access Token from Step 4
