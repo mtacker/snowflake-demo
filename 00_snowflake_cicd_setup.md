@@ -1,14 +1,12 @@
 # Enabling CI/CD changes to Snowflake using Github Actions
 
 
-After completing these steps you will be able to deploy DDL and DML changes direct to multiple Snowflake accounts based upon the branch (DEV/QA/PRD) you commit to.
+After completing these steps you will be able to deploy DDL and DML changes direct to multiple Snowflake accounts based upon the commits to each branch. Commits to "DEV" branch will push changes to your "DEV" account (and QA/PRD respectively).  
 
-- Deep-dive video covering this deployment model [^1]  
-- Snowflake/Github Actions integration [^2]  
+- Snowflake video covering this deployment model [^1]  
+- Snowflake/Github Actions integration documentation [^2]  
 
-Visit [Coding Beauty](https://codingbeautydev.com) for articles on JavaScript, React, Next.js, and more.
-
-This is the [deployment model](https://docs.snowflake.com/en/developer-guide/git/git-overview){:target="_blank"} we are building to:  
+The [deployment model](https://docs.snowflake.com/en/developer-guide/git/git-overview) we are building to:  
 <img src="./.images/git_integration.png" alt="Git Integration with Snowflake using a local stage" width="600" height="600">
 
 ## Summary of Steps:
