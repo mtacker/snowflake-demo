@@ -12,7 +12,7 @@ This is the [deployment model](https://docs.snowflake.com/en/developer-guide/git
 ## Summary of Steps:
 - Setup Snowflake Trial Accounts (DEV/QA/PRD)  
 - Laptop configurations (VS Code, Snowflake CLI, ```gh``` for managing secrets)
-- Run a script to create a deployment database in Snowflake for local git repository  
+- Run script to create roles, deployment database and warehouse managing deployments    
 - Configure a ```.env``` file for ease of secrets management  
 - Github setups (create a personal access token and add secrets)
 - Run a script to connect Snowflake to your remote git repo
