@@ -8,8 +8,8 @@ create or replace view pnc_sales_db.silver.customer_orders as
       O_TOTALPRICE,
       O_ORDERDATE 
    from
-      pnc_sales_db.bronze.customer 
+      pnc_sales_db.silver.customer 
       left outer join
-         pnc_sales_db.bronze.orders 
+         pnc_sales_db.silver.orders 
          on C_CUSTKEY = O_CUSTKEY 
 );
