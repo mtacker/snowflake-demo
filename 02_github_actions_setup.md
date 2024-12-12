@@ -52,7 +52,7 @@ Note> Run this script against each Snowflake accounts [^4]
 - Each Snowflake account should now have a database and compute warehouse called ADM_PLATFORM_DB and ADM_PLATFORM_DB_WH, respectively.
 
 ## Step 4: Remote github repository setups  
-- Create a [Fine-grained Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens).     
+- Create a [Fine-grained Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens) so that Snowflake can pull down repository changes.  
 
 ## Step 5: Configure Snowflake accounts to connect to Github
 Requires Personal Access Token from Step 4
