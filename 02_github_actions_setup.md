@@ -6,7 +6,7 @@ After completing these steps you will be able to deploy DDL and DML changes dire
 - Deep-dive video covering this deployment model[^1]  
 - Snowflake/Github Actions integration[^2]  
 
-This is the deployment model we are building to:  
+This is the [deployment model](https://docs.snowflake.com/en/developer-guide/git/git-overview)  we are building to:  
 <img src="./.images/git_integration.png" alt="Git Integration with Snowflake using a local stage" width="600" height="600">
 
 ## Summary of Steps:
