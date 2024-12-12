@@ -14,10 +14,9 @@ This is the [deployment model](https://docs.snowflake.com/en/developer-guide/git
 2) Laptop configurations (VS Code, Snowflake CLI, git CLI for managing secrets)
 3) Create Snowflake database for integration with Github (script provided)   
 4) Github setups (create a personal access token)  
-5) Configure Snowflake accounts to connect to Github
-6) Create an environment file for ease of updating Github secrets 
-6) Configure Snowflake accounts to be able to connect to Github (script provided)   
-7) AAdd Snowflake account secrets to remote git repository
+5) Configure Snowflake accounts to connect to Github (script provided) 
+6) Create an environment file for ease of updating Github secrets  
+7) Update git repository with Snowflake account secrets
 8) Clone this repo, make code changes (DDL), push to repository and verify your changes are reflected in Snowflake
 
 ## Step 1: Create Snowflake trial accounts
@@ -82,7 +81,7 @@ SNOWFLAKE_CONNECTIONS_SCHEMA = DEPLOY_SCHEMA
 [SF service account pwd] is the password you created in Step 5.  
 If you used my database build script then the literal values above should work for you.  Just swap out account and password details with your own.  
 
-## Step 7: Add Snowflake account secrets to remote git repository
+## Step 7: Update remote git repository with Snowflake account secrets
 Requires Personal Access Token from Step 4  
 
 - Run ```gh``` to write Snowflake account secrets to your repository enabling Github Actions to deploy Snowflake account changes on your behalf:  
