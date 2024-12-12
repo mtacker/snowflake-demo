@@ -19,7 +19,7 @@ This is the [deployment model](https://docs.snowflake.com/en/developer-guide/git
 
 ## Step 1: Create Snowflake trial accounts
 
-- [Create three 30 day accounts](https://signup.snowflake.com/)(DEV/QA/PRD).[^3]   
+- Create three [30 day trial accounts](https://signup.snowflake.com/) (DEV/QA/PRD).[^3]   
 
 - Find your Snowflake Account Identifiers (```account_locator.cloud_region```) and save them later     
 
