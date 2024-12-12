@@ -33,13 +33,13 @@ Snowflake account URL's are in the form:
 https://```account_locator.cloud_region```.snowflakecomputing.com  
 - Set your Account Identifiers aside for use later.  
 
-## Step 2: Configure Laptop for deployments to Snowflake 
+## Step 2: Laptop configurations
 - Install the [Snowflake CLI](01_snowflake_cli_setup.md)
 - Configure VS Code to connect to Snowflake  
 https://docs.snowflake.com/en/user-guide/vscode-ext
 
 VS Code should now be able to connect directly to your Snowflake accounts:  
-<img src="./.images/vscode.png" alt="Alt Text" style="width:85%; height:auto;">
+<img src="./.images/vscode.png" alt="Alt Text" style="width:50%; height:auto;">
 
 - Next, install the Github CLI for managing secrets (not required, but makes life easier):  
 
@@ -47,7 +47,7 @@ VS Code should now be able to connect directly to your Snowflake accounts:
 brew install gh 
 ```
 
-## Create Snowflakes database for integration with Github 
+## Step 3: Create Snowflake database for integration with Github 
 Note> This is required for all Snowflake accounts  
 
 [About this step](https://docs.snowflake.com/en/developer-guide/git/git-overview):  
@@ -58,7 +58,7 @@ This *repository stage* requires us to "prime the pump" by already having an adm
 
 Each Snowflake account should now have a database and compute warehouse called ADM_PLATFORM_DB and ADM_PLATFORM_DB_WH, respectively.
 
-## Create .env file for ease of updating Github secrets
+## Step 4: Create ```.env``` file for ease of updating Github secrets
 ```
 touch .env
 ```
@@ -77,11 +77,9 @@ SNOWFLAKE_CONNECTIONS_DATABASE = ADM_PLATFORM_DB
 SNOWFLAKE_CONNECTIONS_SCHEMA = DEPLOY_SCHEMA  
 ~~~~
 
+If you used my database build script then the literal values above should work for you.  Just swap out account and pwd details with your own.  
 
-
-If you used my database build script then the literal values above should work for you.  
-
-## Remote git repo setups  
+## Step 5: Remote repository setups  
 - Create a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens)  
 
 Your personal access token will be needed for the next step
@@ -101,12 +99,12 @@ From now on, running ```gh secret set -f - < .env``` will simply update your git
 Verify your secrets were added to the repository:  
 <img src="./.images/gh_secrets.png" alt="Alt Text" style="width:50%; height:auto;">  
 
-## Lastly, configure your Snowflake accounts to be able to connect to Github
+## Step 6: Lastly, configure your Snowflake accounts to be able to connect to Github
 - Using either VS Code or a Snowflake worksheet [run this code](03_build_snowflake_local_repo.sql) in each Snowflake account to build your local repository.
 
-## Github Actions can now deploy CI/CD changes to multiple Snowflake accounts!
-- At this point, commits to your "DEV" branch should now apply changes to you "DEV" Snowflake account (QA/PRD etc)  
-- Just ensure your branch names match what's in [main.yml](/.github/workflows/main.yml):  
+## You are now enabled to deploy CI/CD (DML/DDL) changes to multiple Snowflake accounts!
+- Commits, say to your "DEV" branch, will now apply changes to you "DEV" Snowflake account (and QA/PRD etc)  
+- Ensure your branch names match what's in [main.yml](/.github/workflows/main.yml):  
 <img src="./.images/main.yml.png" alt="Alt Text" style="width:50%; height:auto;">
 
 
