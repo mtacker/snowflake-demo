@@ -35,13 +35,12 @@ https://```account_locator.cloud_region```.snowflakecomputing.com
 
 ## Step 2: Laptop configurations
 - Install the [Snowflake CLI](01_snowflake_cli_setup.md)
-- Configure VS Code to connect to Snowflake  
-https://docs.snowflake.com/en/user-guide/vscode-ext
+- [Configure VS Code](https://docs.snowflake.com/en/user-guide/vscode-ext) to connect to Snowflake  
 
-VS Code should now be able to connect directly to your Snowflake accounts:  
+VS Code should now be enabled for Snowflake account access:  
 <img src="./.images/vscode.png" alt="Alt Text" style="width:50%; height:auto;">
 
-- Next, install the Github CLI for managing secrets (not required, but makes life easier):  
+- Install the Github CLI for managing secrets (not required, but makes life easier):  
 
 ```
 brew install gh 
