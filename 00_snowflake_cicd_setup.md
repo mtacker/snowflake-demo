@@ -1,5 +1,6 @@
 # Enabling CI/CD changes to Snowflake using Github Actions
 
+[Link to test header](#this-is-a-test-header)
 
 After completing these steps you will be able to deploy DDL and DML changes direct to multiple Snowflake accounts based upon the commits to each branch. Commits to "DEV" branch will push changes to your "DEV" account (and QA/PRD respectively).  
 
@@ -21,6 +22,7 @@ The deployment model we are building to:
 
 ## Step 1: Create Snowflake trial accounts
 
+### This is a test header.
 - Create three [30 day trial accounts](https://signup.snowflake.com/) (DEV/QA/PRD).[^1]   
 
 - Once created, find your Snowflake Account Identifiers (```account_locator.cloud_region```) and save them for later.     
