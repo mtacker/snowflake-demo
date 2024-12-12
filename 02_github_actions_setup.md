@@ -65,8 +65,7 @@ touch .env
 Add ```.env``` to gitignore!  
 
 Add parameter values with ```SNOWFLAKE_CONNECTIONS_ACCOUNT_[DEV/QA/PRD]``` being each ```account_locator.cloud_region```:  
-```
-unix
+```unix
 SNOWFLAKE_CONNECTIONS_ACCOUNT_DEV = csb*****.us-east-1   
 SNOWFLAKE_CONNECTIONS_ACCOUNT_QA = frb*****.us-east-1  
 SNOWFLAKE_CONNECTIONS_ACCOUNT_PRD = sab*****.us-east-1  
