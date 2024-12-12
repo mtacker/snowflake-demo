@@ -58,26 +58,31 @@ touch .env
 ```
 Add ```.env``` to gitignore!  
 
-Update parameters below and add to .env file including each ```account_locator.cloud_region```:  
+Add connection details to .env file including each ```account_locator.cloud_region```:  
 ~~~~
 SNOWFLAKE_CONNECTIONS_ACCOUNT_DEV = csb*****.us-east-1   
 SNOWFLAKE_CONNECTIONS_ACCOUNT_QA = frb*****.us-east-1  
 SNOWFLAKE_CONNECTIONS_ACCOUNT_PRD = sab*****.us-east-1  
 SNOWFLAKE_CONNECTIONS_USER = SVC_DEPLOY  
-SNOWFLAKE_CONNECTIONS_PASSWORD = [service account pwd]   
+SNOWFLAKE_CONNECTIONS_PASSWORD = [SF service account pwd] 
 SNOWFLAKE_CONNECTIONS_ROLE = ACCOUNTADMIN  
 SNOWFLAKE_CONNECTIONS_WAREHOUSE = ADM_PLATFORM_DB_WH  
 SNOWFLAKE_CONNECTIONS_DATABASE = ADM_PLATFORM_DB  
 SNOWFLAKE_CONNECTIONS_SCHEMA = DEPLOY_SCHEMA  
 ~~~~
-
-If you used my database build script then the literal values above should work for you.  Just swap out account and pwd details with your own.  
+Note> [SF service account pwd] created in Step 6.  
+If you used my database build script then the literal values above should work for you.  Just swap out account and password details with your own.  
 
 ## Step 5: Remote repository setups  
 - Create a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens)  
 
-Your personal access token will be needed for the next step
-- Run ```gh``` to write secrets to your repository  
+Your personal access token will be needed for the next two steps
+
+## Step 6: Configure Snowflake accounts to be able to connect to Github
+- Using VS Code or a Snowflake worksheet [run this code](03_build_snowflake_local_repo.sql) in each Snowflake account to build your local repository.
+
+## Step 7: Create git secrets in remote repository
+- Run ```gh``` to write Snowflake account secrets to your repository enabling Github Actions to deploy Snowflake account changes on your behalf:  
 ```
 gh secret set -f - < .env
 ```
@@ -86,15 +91,14 @@ Follow the prompts:
 <img src="./.images/github_gh.png" alt="Alt Text" style="width:75%; height:auto;">  
 
 Two things just happened:  
-- Your github personal access token is now securely stored locally  
-- Your ```.env``` secrets should now be added to your github repository  
-From now on, running ```gh secret set -f - < .env``` will simply update your github secrets without requiring the PAT.  
+- Your github personal access token is now securely stored locally for command line authenticaion when updating secrets.  
+- Your ```.env``` secrets should now be added to your github repository [^6]
+
 
 Verify your secrets were added to the repository:  
 <img src="./.images/gh_secrets.png" alt="Alt Text" style="width:50%; height:auto;">  
 
-## Step 6: Lastly, configure your Snowflake accounts to be able to connect to Github
-- Using either VS Code or a Snowflake worksheet [run this code](03_build_snowflake_local_repo.sql) in each Snowflake account to build your local repository.
+
 
 ## You are now enabled to deploy CI/CD (DML/DDL) changes to multiple Snowflake accounts!
 - Commits, say to your "DEV" branch, will now apply changes to you "DEV" Snowflake account (and QA/PRD etc)  
@@ -108,6 +112,7 @@ See video [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=
 [^3]: Credit card is not required. Your email address can be reused and a corporate address is not required. 
 [^4]: [Snowflake docs on local stage](https://docs.snowflake.com/en/developer-guide/git/git-overview): "*You can integrate your remote Git repository with Snowflake so that files from the repository are synchronized to a special kind of stage called a repository stage. The repository stage acts as a local Git repository with a full clone of the remote repository, including branches, tags, and commits.*"
 [^5]: This script will build Snowflake roles, deployment database and compute warehouse.  
+[^6]: From now on, running ```gh secret set -f - < .env``` will simply update your github secrets without requiring the PAT.  
 
 
 
