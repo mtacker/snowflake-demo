@@ -3,10 +3,10 @@
 
 After completing these steps you will be able to deploy DDL and DML changes direct to multiple Snowflake accounts based upon the commits to each branch. Commits to "DEV" branch will push changes to your "DEV" account (and QA/PRD respectively).  
 
-- See video [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=k20yLpW8-xU) covering this deployment model  
-- Refer to [documentation](https://docs.snowflake.com/en/developer-guide/git/git-overview) for more details on Snowflake integration with Github  
+- See video [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=k20yLpW8-xU) covering this deployment model.  
+- Refer to [documentation](https://docs.snowflake.com/en/developer-guide/git/git-overview) for more detail on Snowflake integration with Github.  
 
-The [deployment model](https://docs.snowflake.com/en/developer-guide/git/git-overview) we are building to:  
+The deployment model we are building to:  
 <img src="./.images/git_integration.png" alt="Git Integration with Snowflake using a local stage" width="600" height="600">
 
 ## Summary of Steps:
