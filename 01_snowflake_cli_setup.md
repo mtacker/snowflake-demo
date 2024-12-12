@@ -14,7 +14,7 @@ snow --help;
 
 ## Set your Snowflake CLI
 
--  Your connections.toml should have entries from [Step 1](./00_snowflake_cicd_setup.md#step-1-create-snowflake-trial-accounts) like this:  
+-  Update connections.toml with entries from [Step 1](./00_snowflake_cicd_setup.md#step-1-create-snowflake-trial-accounts):  
 
 ```
 [DEV]
