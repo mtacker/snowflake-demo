@@ -94,9 +94,8 @@ Follow the prompts:
 <img src="./.images/github_gh.png" alt="Alt Text" style="width:75%; height:auto;">  
 
 Two things just happened:  
-- Your github personal access token is now securely stored locally for command line authenticaion when updating secrets.  
+- Your github personal access token is now securely stored locally for command line authentication when updating secrets in the future.  
 - Your ```.env``` secrets should now be added to your github repository [^5]
-
 
 Verify your secrets were added to the repository:  
 <img src="./.images/gh_secrets.png" alt="Alt Text" style="width:50%; height:auto;">  
