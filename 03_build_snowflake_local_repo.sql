@@ -1,4 +1,4 @@
--- Change as need to point to your Github UserName, URL, and Personal Access Token
+-- Edit with your details including Github UserName, URL, and Personal Access Token
 USE ROLE SYSADMIN;
 CREATE DATABASE IF NOT EXISTS ADM_PLATFORM_DB;
 CREATE SCHEMA IF NOT EXISTS DEPLOY;
