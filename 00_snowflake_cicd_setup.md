@@ -1,7 +1,5 @@
 # Enabling CI/CD changes to Snowflake using Github Actions
 
-[Link to test header](#this-is-a-test-header)
-
 After completing these steps you will be able to deploy DDL and DML changes direct to multiple Snowflake accounts based upon the commits to each branch. Commits to "DEV" branch will push changes to your "DEV" account (and QA/PRD respectively).  
 
 - See video [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=k20yLpW8-xU) covering this deployment model.  
@@ -35,8 +33,8 @@ https://```account_locator.cloud_region```.snowflakecomputing.com
 
 
 ## Step 2: Laptop configurations
-- Install the [Snowflake CLI](01_snowflake_cli_setup.md)
-- [Configure VS Code](https://docs.snowflake.com/en/user-guide/vscode-ext) to connect to Snowflake  
+- [Install and configure](01_snowflake_cli_setup.md) Snowflake CLI
+- [Configure](https://docs.snowflake.com/en/user-guide/vscode-ext) VS Code to connect to Snowflake  
 
 VS Code should now be enabled for Snowflake account access:  
 <img src="./.images/vscode.png" alt="Alt Text" style="width:50%; height:auto;">
