@@ -16,8 +16,6 @@ snow --help;
 
 -  your connections.toml should have entries from [Step 1](./00_snowflake_cicd_setup.md#step-1-create-snowflake-trial-accounts) like this:  
 
-[sub-section](./child.md#sub-section) 
-
 ```
 [DEV]
 account = "csb*****.us-east-1 "
@@ -37,7 +35,8 @@ user = "some SF user"
 authenticator = "snowflake"
 password = "*******"
 ```
-Last, set your local Snowflake CLI to point to a specific account by default:    
+
+Set your Snowflake CLI to point to a specific account by default:    
 ```
 snow connection set-default DEV;  
 snow sql -q "SHOW DATABASES;"
