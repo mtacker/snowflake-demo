@@ -101,7 +101,7 @@ Verify your secrets were added to the repository:
 <img src="./.images/gh_secrets.png" alt="Alt Text" style="width:50%; height:auto;">  
 
 ## You are now enabled to deploy CI/CD (DML/DDL) changes to multiple Snowflake accounts
-- Commits, say to your "DEV" branch, will now apply changes to you "DEV" Snowflake account (and QA/PRD etc)  
+- Commits, say to your "DEV" branch, will now apply changes to your "DEV" Snowflake account (and QA/PRD etc)  
 - Ensure your branch names match what's in [main.yml](/.github/workflows/main.yml):  
 <img src="./.images/main.yml.png" alt="Alt Text" style="width:50%; height:auto;">
 
