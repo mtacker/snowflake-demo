@@ -1,7 +1,7 @@
 
 # Snowflake CLI
 
-## Installing the Snowflake CLI Locally
+## Install the Snowflake CLI Locally
 
 - [Install](https://docs.snowflake.com/developer-guide/snowflake-cli/installation/installation#label-snowcli-install-macos-installer) Snowflake CLI
 - [Configure](https://docs.snowflake.com/developer-guide/snowflake-cli/connecting/configure-cli) Snowflake CLI (including connections.toml file)
@@ -12,7 +12,7 @@ brew install snowflake-cli;
 snow --help;
 ```
 
-## Set your Snowflake CLI
+## Configure your Snowflake CLI
 
 -  Update connections.toml with entries from [Step 1](./00_snowflake_cicd_setup.md#step-1-create-snowflake-trial-accounts):  
 
