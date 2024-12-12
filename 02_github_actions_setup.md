@@ -12,10 +12,12 @@ This is the [deployment model](https://docs.snowflake.com/en/developer-guide/git
 ## Summary of Steps:
 - Create Snowflake Trial Accounts (DEV/QA/PRD)  
 - Laptop configurations (VS Code, Snowflake CLI, Git CLI for managing secrets)
-- Run SQL script to build account roles, deployment database and compute warehouse    
-- Configure an environment file for ease of secrets management  
-- Github setups (create a personal access token and add secrets)
-- Run SQL script to connect Snowflake to your remote git repo
+- Create Snowflake database for integration with Github using provided script     
+- Create an environment file for ease of updating Github secrets 
+- Github setups (create a personal access token)
+- Configure Snowflake accounts to be able to connect to Github using provided script  
+- Add Snowflake account secrets to remote repository
+- Clone this repo, make code changes (DDL), push to repository and verify your changes are reflected in Snowflake
 
 ## Step 1: Create Snowflake trial accounts
 
@@ -73,7 +75,7 @@ SNOWFLAKE_CONNECTIONS_SCHEMA = DEPLOY_SCHEMA
 Note> [SF service account pwd] created in Step 6.  
 If you used my database build script then the literal values above should work for you.  Just swap out account and password details with your own.  
 
-## Step 5: Remote repository setups  
+## Step 5: Remote github repository setups  
 - Create a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens)  
 
 Your personal access token will be needed for the next two steps
@@ -81,7 +83,7 @@ Your personal access token will be needed for the next two steps
 ## Step 6: Configure Snowflake accounts to be able to connect to Github
 - Using VS Code or a Snowflake worksheet [run this code](03_build_snowflake_local_repo.sql) in each Snowflake account to build your local repository.
 
-## Step 7: Create git secrets in remote repository
+## Step 7: Add Snowflake account secrets to remote repository
 - Run ```gh``` to write Snowflake account secrets to your repository enabling Github Actions to deploy Snowflake account changes on your behalf:  
 ```
 gh secret set -f - < .env
@@ -100,11 +102,14 @@ Verify your secrets were added to the repository:
 
 
 
-## You are now enabled to deploy CI/CD (DML/DDL) changes to multiple Snowflake accounts!
+## You are now enabled to deploy CI/CD (DML/DDL) changes to multiple Snowflake accounts
 - Commits, say to your "DEV" branch, will now apply changes to you "DEV" Snowflake account (and QA/PRD etc)  
 - Ensure your branch names match what's in [main.yml](/.github/workflows/main.yml):  
 <img src="./.images/main.yml.png" alt="Alt Text" style="width:50%; height:auto;">
 
+## Next steps
+Clone this repo and test by making DDL changes and see them get deployed to your respective accounts.  
+NOTE> master branch = PRD for this exercise.  
 
 [^1]: This deployment model is based on Snowflake's most recent recommended approach.   
 See video [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=k20yLpW8-xU).  
