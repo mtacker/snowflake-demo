@@ -66,7 +66,7 @@ touch .env
 ```
 Add ```.env``` to gitignore!  
 
-Add connection details to .env file including each ```account_locator.cloud_region```:  
+Add connection details to .env file including respective ```account_locator.cloud_region``` IDs:  
 ~~~~
 SNOWFLAKE_CONNECTIONS_ACCOUNT_DEV = csb*****.us-east-1   
 SNOWFLAKE_CONNECTIONS_ACCOUNT_QA = frb*****.us-east-1  
@@ -79,6 +79,7 @@ SNOWFLAKE_CONNECTIONS_DATABASE = ADM_PLATFORM_DB
 SNOWFLAKE_CONNECTIONS_SCHEMA = DEPLOY_SCHEMA  
 ~~~~
 [SF service account pwd] is the password you created in Step 5.  
+
 If you used my database build script then the literal values above should work for you.  Just swap out account and password details with your own.  
 
 ## Step 7: Update remote git repository with Snowflake account secrets
