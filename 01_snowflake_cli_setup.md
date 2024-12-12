@@ -3,8 +3,8 @@
 
 ## Installing the Snowflake CLI Locally
 
-- Install the [Snowflake CLI](https://docs.snowflake.com/developer-guide/snowflake-cli/installation/installation#label-snowcli-install-macos-installer)  
-- [Configure](https://docs.snowflake.com/developer-guide/snowflake-cli/connecting/configure-cli) the Snowflake CLI (including connections.toml file)
+- [Install](https://docs.snowflake.com/developer-guide/snowflake-cli/installation/installation#label-snowcli-install-macos-installer) Snowflake CLI
+- [Configure](https://docs.snowflake.com/developer-guide/snowflake-cli/connecting/configure-cli) Snowflake CLI (including connections.toml file)
 - [Mac users](https://github.com/snowflakedb/snowflake-cli):  
 ```
 brew tap snowflakedb/snowflake-cli;
