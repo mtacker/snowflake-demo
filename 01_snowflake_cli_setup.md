@@ -12,7 +12,7 @@ brew install snowflake-cli;
 snow --help;
 ```
 
-## Configure your Snowflake CLI
+## Configure the Snowflake CLI
 
 -  Update connections.toml with entries from [Step 1](./00_snowflake_cicd_setup.md#step-1-create-snowflake-trial-accounts):  
 
