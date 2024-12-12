@@ -1,4 +1,12 @@
-# Github Actions Setup
+# Enabling CI/CD changes to Snowflake using Github Actions
+This is a deployment model is based on Snowflake's most recent recommended approach:  
+See [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=k20yLpW8-xU).  
+
+After completing these steps you will be able to deploy code DDL and DML changes direct to multiple Snowflake accounts based upon which branch (DEV/QA/PRD) you commit to.  
+https://docs.snowflake.com/en/developer-guide/git/git-overview
+
+<img src=".images/git_integration.png" alt="Git Integration with Snowflake using a local stage" style="width:35%; height:auto;>
+
 
 ## Step 1: Create Snowflake trial accounts
 
@@ -69,8 +77,8 @@ Follow the prompts:
 <img src="./.images/github_gh.png" alt="Alt Text" style="width:50%; height:auto;">  
 
 Two things just happened:  
-- Your github personal access token is now securely stored locally and you won't be asked for again  
-- Your secrets should now be stored in your github repository.  
+- Your github personal access token is now securely stored locally. 
+- Your secrets should now be added to your github repository.  
 From now on, running ```gh secret set -f - < .env``` will simply update your github secrets without requiring the PAT 
 
 ## Lastly, configure your Snowflake accounts to be able to connect to Github
