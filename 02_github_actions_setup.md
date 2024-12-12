@@ -12,10 +12,10 @@ This is the model we are building to:
 Summary of Steps:
 - Setup Snowflake Trial Accounts (DEV/QA/PRD)  
 - Laptop configurations (VS Code, Snowflake CLI, ```gh``` for managing secrets)
-- Build a deployment database for integration with Github
-- ```.env``` file for ease of secrets management  
-- Github setups (personal access token and secrets)
-- Script to enable Snowflake to connect to your github repo
+- Run a script to create a deployment database in Snowflake for local git repository  
+- Configure a ```.env``` file for ease of secrets management  
+- Github setups (create a personal access token and add secrets)
+- Run a script to connect Snowflake to your remote git repo
 
 ## Step 1: Create Snowflake trial accounts
 
@@ -31,13 +31,14 @@ From the Snowflake console:
 
 Snowflake account URL's are in the form:  
 https://```account_locator.cloud_region```.snowflakecomputing.com  
+- Set your Account Identifiers aside for use later.  
 
-## Laptop setups
+## Step 2: Configure Laptop for deployments to Snowflake 
 - Install the [Snowflake CLI](01_snowflake_cli_setup.md)
 - Configure VS Code to connect to Snowflake  
 https://docs.snowflake.com/en/user-guide/vscode-ext
 
-VS Code Can Should now be able to connect directly to your Snowflake accounts:  
+VS Code should now be able to connect directly to your Snowflake accounts:  
 <img src="./.images/vscode.png" alt="Alt Text" style="width:85%; height:auto;">
 
 - Next, install the Github CLI for managing secrets (not required, but makes life easier):  
@@ -46,7 +47,8 @@ VS Code Can Should now be able to connect directly to your Snowflake accounts:
 brew install gh 
 ```
 
-## Create a database for integration with Github 
+## Create Snowflakes database for integration with Github 
+Note> This is required for all Snowflake accounts  
 
 [About this step](https://docs.snowflake.com/en/developer-guide/git/git-overview):  
 "*You can integrate your remote Git repository with Snowflake so that files from the repository are synchronized to a special kind of stage called a repository stage. The repository stage acts as a local Git repository with a full clone of the remote repository, including branches, tags, and commits.*"
@@ -54,7 +56,7 @@ brew install gh
 This *repository stage* requires us to "prime the pump" by already having an admin database in place, therefore:  
 - Using VS Code or a Snowflake worksheet [run this code](00_buiild_platform_db.sql) in each Snowflake account
 
-Your Snowflake account should now have a new database and compute warehouse called ADM_PLATFORM_DB and ADM_PLATFORM_DB_WH respectively.
+Each Snowflake account should now have a database and compute warehouse called ADM_PLATFORM_DB and ADM_PLATFORM_DB_WH, respectively.
 
 ## Create .env file for ease of updating Github secrets
 ```
@@ -74,8 +76,11 @@ SNOWFLAKE_CONNECTIONS_WAREHOUSE = ADM_PLATFORM_DB_WH
 SNOWFLAKE_CONNECTIONS_DATABASE = ADM_PLATFORM_DB  
 SNOWFLAKE_CONNECTIONS_SCHEMA = DEPLOY_SCHEMA  
 
-## Github setups  
+If you used my database build script then the literal values above should work for you.  
+
+## Remote git repo setups  
 - Create a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens)  
+
 Your personal access token will be needed for the next step
 - Run ```gh``` to write secrets to your repository  
 ```
@@ -86,9 +91,12 @@ Follow the prompts:
 <img src="./.images/github_gh.png" alt="Alt Text" style="width:50%; height:auto;">  
 
 Two things just happened:  
-- Your github personal access token is now securely stored locally. 
-- Your secrets should now be added to your github repository.  
-From now on, running ```gh secret set -f - < .env``` will simply update your github secrets without requiring the PAT 
+- Your github personal access token is now securely stored locally  
+- Your ```.env``` secrets should now be added to your github repository  
+From now on, running ```gh secret set -f - < .env``` will simply update your github secrets without requiring the PAT.  
+
+Verify your secrets were added to the repository:  
+<img src="./.images/gh_secrets.png" alt="Alt Text" style="width:50%; height:auto;">  
 
 ## Lastly, configure your Snowflake accounts to be able to connect to Github
 - Using either VS Code or a Snowflake worksheet [run this code](03_build_snowflake_local_repo.sql) in each Snowflake account to build your local repository.
