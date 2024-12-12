@@ -83,7 +83,6 @@ EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc/snowflake_ob
 USE SCHEMA ADM_PLATFORM_DB.DEPLOY;
 ALTER GIT REPOSITORY SNOWFLAKE_GIT_REPO FETCH;
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/silver/views/customer_orders.sql;
-EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/silver/views/product_inventory.sql;
 
 -- PROCEDURES
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/master/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/bronze/stored_procedures/load_bronze_customer_orders.sql;

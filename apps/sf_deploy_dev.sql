@@ -43,18 +43,17 @@
 -- The rest of my proposed orchestration would look like this:
 
 -- TABLES
--- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/bronze/tables/customer.sql;
--- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/bronze/tables/orders.sql;
--- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/bronze/tables/product.sql;
--- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/silver/tables/customer.sql;
--- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/silver/tables/orders.sql;
--- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/silver/tables/product.sql;
--- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/gold/tables/shipping.sql;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/bronze/tables/customer.sql;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/bronze/tables/orders.sql;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/bronze/tables/product.sql;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/silver/tables/customer.sql;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/silver/tables/orders.sql;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/silver/tables/product.sql;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/gold/tables/shipping.sql;
  
 -- VIEWS
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/bronze/views/customer_orders.sql;
--- EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/silver/views/customer_orders.sql;
-EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/silver/views/product_inventory.sql;
+EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/silver/views/customer_orders.sql;
 
 -- PROCEDURES
 EXECUTE IMMEDIATE FROM @SNOWFLAKE_GIT_REPO/branches/dev/apps/pnc/snowflake_objects/databases/pnc_sales_db/schemas/bronze/stored_procedures/load_bronze_customer_orders.sql;

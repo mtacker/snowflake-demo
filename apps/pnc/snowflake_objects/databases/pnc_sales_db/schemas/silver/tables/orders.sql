@@ -40,3 +40,4 @@ INSERT INTO pnc_sales_db.silver.orders (
   FROM 
     SNOWFLAKE_SAMPLE_DATA.TPCH_SF10.ORDERS;
 
+select * from SNOWFLAKE_SAMPLE_DATA.TPCH_SF10.ORDERS limit 10;
