@@ -4,11 +4,18 @@ See [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=k20yLp
 
 See Snowflake's [git overview](https://docs.snowflake.com/en/developer-guide/git/git-overview) for more details.  
 
-After completing these steps you will be able to deploy code DDL and DML changes direct to multiple Snowflake accounts based upon which branch (DEV/QA/PRD) you commit to.  
+After completing these steps you will be able to deploy DDL and DML changes direct to multiple Snowflake accounts based upon the branch (DEV/QA/PRD) you commit to.  
 
 This is the model we are building to:  
 <img src="./.images/git_integration.png" alt="Git Integration with Snowflake using a local stage" width="600" height="600">
 
+Summary of Steps:
+- Setup Snowflake Trial Accounts (DEV/QA/PRD)  
+- Laptop configurations (VS Code, Snowflake CLI, ```gh``` for managing secrets)
+- Build a deployment database for integration with Github
+- ```.env``` file for ease of secrets management  
+- Github setups (personal access token and secrets)
+- Script to enable Snowflake to connect to your github repo
 
 ## Step 1: Create Snowflake trial accounts
 
