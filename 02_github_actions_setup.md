@@ -1,10 +1,7 @@
 # Enabling CI/CD changes to Snowflake using Github Actions
-This is a deployment model is based on Snowflake's most recent recommended approach:  
-See [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=k20yLpW8-xU).  
 
-See Snowflake's [git overview](https://docs.snowflake.com/en/developer-guide/git/git-overview) for more details.  
 
-After completing these steps you will be able to deploy DDL and DML changes direct to multiple Snowflake accounts based upon the branch (DEV/QA/PRD) you commit to.  
+After completing these steps you will be able to deploy DDL and DML changes direct to multiple Snowflake accounts based upon the branch (DEV/QA/PRD) you commit to.[^1]
 
 This is the model we are building to:  
 <img src="./.images/git_integration.png" alt="Git Integration with Snowflake using a local stage" width="600" height="600">
@@ -76,7 +73,7 @@ SNOWFLAKE_CONNECTIONS_WAREHOUSE = ADM_PLATFORM_DB_WH
 SNOWFLAKE_CONNECTIONS_DATABASE = ADM_PLATFORM_DB  
 SNOWFLAKE_CONNECTIONS_SCHEMA = DEPLOY_SCHEMA  
 ~~~~
-That's some text with a footnote.[^1]
+
 
 
 If you used my database build script then the literal values above should work for you.  
@@ -110,7 +107,10 @@ Verify your secrets were added to the repository:
 <img src="./.images/main.yml.png" alt="Alt Text" style="width:50%; height:auto;">
 
 
-[^1]: And that's the footnote.
+[^1]: This is a deployment model is based on Snowflake's most recent recommended approach:  
+See [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=k20yLpW8-xU).  
+
+See Snowflake's [git overview](https://docs.snowflake.com/en/developer-guide/git/git-overview) for more details.  
 
 
 
