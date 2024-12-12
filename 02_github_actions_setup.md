@@ -76,6 +76,8 @@ SNOWFLAKE_CONNECTIONS_WAREHOUSE = ADM_PLATFORM_DB_WH
 SNOWFLAKE_CONNECTIONS_DATABASE = ADM_PLATFORM_DB  
 SNOWFLAKE_CONNECTIONS_SCHEMA = DEPLOY_SCHEMA  
 ~~~~
+That's some text with a footnote.[^1]
+
 
 If you used my database build script then the literal values above should work for you.  
 
@@ -108,7 +110,7 @@ Verify your secrets were added to the repository:
 <img src="./.images/main.yml.png" alt="Alt Text" style="width:50%; height:auto;">
 
 
-
+[^1]: And that's the footnote.
 
 
 
