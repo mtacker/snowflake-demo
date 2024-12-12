@@ -46,13 +46,11 @@ brew install gh
 ## Step 3: Create Snowflake database for integration with Github 
 Note> This is required for all Snowflake accounts  
 
-[About this step](https://docs.snowflake.com/en/developer-guide/git/git-overview)[^4]
-
+About this step [^4]
 
 This *repository stage* requires us to "prime the pump" by already having an admin database in place, therefore:  
-- Using VS Code or a Snowflake worksheet [run this code](00_buiild_platform_db.sql) in each Snowflake account
-
-Each Snowflake account should now have a database and compute warehouse called ADM_PLATFORM_DB and ADM_PLATFORM_DB_WH, respectively.
+- Using VS Code or a Snowflake worksheet [run this code](00_buiild_platform_db.sql) in each Snowflake account. [^5]
+- Ensure that each Snowflake account now has a database and compute warehouse called ADM_PLATFORM_DB and ADM_PLATFORM_DB_WH, respectively.
 
 ## Step 4: Create ```.env``` file for ease of updating Github secrets
 ```
@@ -108,7 +106,8 @@ Verify your secrets were added to the repository:
 See video [The Future Of DevOps With Snowflake](https://www.youtube.com/watch?v=k20yLpW8-xU).  
 [^2]: See Snowflake's [git overview](https://docs.snowflake.com/en/developer-guide/git/git-overview) for more details.  
 [^3]: Credit card is not required. Your email address can be reused and a corporate address is not required. 
-[^4]: "*You can integrate your remote Git repository with Snowflake so that files from the repository are synchronized to a special kind of stage called a repository stage. The repository stage acts as a local Git repository with a full clone of the remote repository, including branches, tags, and commits.*"
+[^4]: [Snowflake docs on local stage](https://docs.snowflake.com/en/developer-guide/git/git-overview): "*You can integrate your remote Git repository with Snowflake so that files from the repository are synchronized to a special kind of stage called a repository stage. The repository stage acts as a local Git repository with a full clone of the remote repository, including branches, tags, and commits.*"
+[^5]: This script will build Snowflake roles, deployment database and compute warehouse.  
 
 
 
